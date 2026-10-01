@@ -313,12 +313,31 @@ footer.site{padding-block:56px 32px}
 /* lightbox */
 .lb[hidden],[hidden]{display:none!important}
 .lb{position:fixed;inset:0;z-index:100;background:rgba(20,18,16,.94);display:grid;place-items:center;padding:24px var(--gut);animation:fade .18s}
-.lb__box{width:min(1000px,100%);display:grid;gap:14px;color:var(--cream)}
-.lb__box.v{width:min(420px,100%,calc((100vh - 150px) * 9 / 16));width:min(420px,100%,calc((100dvh - 150px) * 9 / 16))}
-.lb__media{position:relative;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;border:2px solid var(--cream);background:#000;max-height:78vh}
+.lb__box{width:min(1000px,100%,calc((100vh - 150px) * var(--ar,1.7778)));display:grid;gap:14px;color:var(--cream)}
+.lb__box{--ar:1.7778}.lb__box.v{--ar:.5625;width:min(460px,100%,calc((100vh - 150px) * var(--ar)));width:min(460px,100%,calc((100dvh - 150px) * var(--ar)))}
+.lb__media{position:relative;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;border:2px solid var(--cream);background:#000}
 .lb__box.v .lb__media{aspect-ratio:9/16;max-height:none}
 .lb__media video,.lb__media iframe{width:100%;height:100%;border:0;object-fit:contain}
 /* covers the Drive player's "open in new window" button so viewers stay on this site */
+
+/* custom video player: play/pause + slider only, fades after 2s */
+.pl{position:absolute;inset:0;background:#000;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none}
+.pl video{width:100%;height:100%;object-fit:contain;display:block}
+.pl__ui{position:absolute;inset:0;transition:opacity .35s;pointer-events:none}
+.pl.idle .pl__ui{opacity:0}
+.pl__big{position:absolute;left:50%;top:50%;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;border:0;background:rgba(20,18,16,.62);color:var(--cream);display:grid;place-items:center;pointer-events:auto;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:transform .15s,background .2s}
+.pl__big:active{transform:scale(.92)}.pl__big svg{width:30px;height:30px}
+.pl__big .ic-pause{display:none}.pl.playing .pl__big .ic-play{display:none}.pl.playing .pl__big .ic-pause{display:block}
+.pl.loading .pl__big{animation:plpulse 1s ease-in-out infinite}
+@keyframes plpulse{50%{transform:scale(.9);opacity:.7}}
+.pl__bar{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.55));display:flex;align-items:center;gap:10px;pointer-events:auto}
+.pl__bar time{font:500 12px/1 ui-monospace,Menlo,monospace;color:var(--cream);font-variant-numeric:tabular-nums;min-width:38px}
+.pl__seek{flex:1;-webkit-appearance:none;appearance:none;height:22px;background:transparent;cursor:pointer;margin:0;--p:0%}
+.pl__seek::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--mustard) var(--p),rgba(244,237,225,.35) var(--p))}
+.pl__seek::-moz-range-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--mustard) var(--p),rgba(244,237,225,.35) var(--p))}
+.pl__seek::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--mustard);margin-top:-5px;border:0}
+.pl__seek::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--mustard);border:0}
+.pl__seek:focus{outline:none}
 .lb__shield{position:absolute;top:0;right:0;width:72px;height:64px;z-index:2;background:transparent}
 .lb__ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
 .lb__ph p{background:rgba(20,18,16,.85);padding:14px 18px;border-radius:var(--r-md);margin:0;max-width:40ch;font-size:15px}
@@ -843,6 +862,7 @@ if("IntersectionObserver" in window && !reduce){
 const PAL={commercial:[["#f2b61f","#e8491d"],["#f4ede1","#f2b61f"],["#e8491d","#141210"]],music:[["#141210","#e8491d"],["#2a1d3a","#e8491d"],["#141210","#f2b61f"]],short:[["#e8491d","#f2b61f"],["#f2b61f","#f4ede1"],["#141210","#e8491d"]],youtube:[["#eadfcb","#e8491d"],["#141210","#5e554b"],["#f2b61f","#141210"]],international:[["#141210","#f2b61f"],["#f2b61f","#e8491d"],["#eadfcb","#141210"]],realestate:[["#eadfcb","#e8491d"],["#141210","#f2b61f"],["#f2b61f","#141210"]],docmotion:[["#141210","#e8491d"],["#eadfcb","#141210"],["#f2b61f","#141210"]]};
 const tc=i=>`00:${String(i%60).padStart(2,"0")}:${String((i*17)%60).padStart(2,"0")}:${String((i*7)%24).padStart(2,"0")}`;
 function thumb(v,i){
+  if(v.poster)return `<div class="thumb"><img class="real ok" src="${v.poster}" alt="" loading="lazy" style="opacity:1"></div>`;
   if(v.thumb)return `<div class="thumb"><img src="${v.thumb}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>`;
   const [a,b]=PAL[v.genre][i%3], ang=[135,200,60,160][i%4];
   const dark=["#141210","#2a1d3a","#e8491d"].includes(a) && b!=="#f4ede1";
@@ -934,19 +954,52 @@ function embed(u){
   m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);if(m)return `https://player.vimeo.com/video/${m[1]}?autoplay=1`;
   m=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]{10,})/);if(m)return `https://drive.google.com/file/d/${m[1]}/preview`;return "";
 }
+
+/* ---- custom player (for videos hosted on the site) ---- */
+function player(src,poster){
+  return `<div class="pl" tabindex="-1"><video playsinline preload="metadata" ${poster?`poster="${poster}"`:""} disablepictureinpicture controlslist="nodownload noremoteplayback noplaybackrate" oncontextmenu="return false" src="${src}"></video>
+    <div class="pl__ui"><button class="pl__big" type="button" aria-label="Play"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>
+    <div class="pl__bar"><time class="pl__t">0:00</time><input class="pl__seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek"><time class="pl__d">0:00</time></div></div></div>`;
+}
+function wirePlayer(root,onShape){
+  const pl=root.querySelector(".pl");if(!pl)return;
+  const vd=pl.querySelector("video"),big=pl.querySelector(".pl__big"),seek=pl.querySelector(".pl__seek"),tEl=pl.querySelector(".pl__t"),dEl=pl.querySelector(".pl__d");
+  const fmt=x=>{x=Math.max(0,Math.floor(x||0));return Math.floor(x/60)+":"+String(x%60).padStart(2,"0")};
+  let hideT,dragging=false;
+  const show=()=>{pl.classList.remove("idle");clearTimeout(hideT);if(!vd.paused)hideT=setTimeout(()=>{if(!dragging)pl.classList.add("idle")},2000)};
+  const toggle=()=>{vd.paused?vd.play().catch(()=>{}):vd.pause()};
+  vd.addEventListener("loadedmetadata",()=>{dEl.textContent=fmt(vd.duration);onShape&&onShape(vd.videoWidth/vd.videoHeight)});
+  vd.addEventListener("play",()=>{pl.classList.add("playing");big.setAttribute("aria-label","Pause");show()});
+  vd.addEventListener("pause",()=>{pl.classList.remove("playing");big.setAttribute("aria-label","Play");show()});
+  vd.addEventListener("waiting",()=>pl.classList.add("loading"));vd.addEventListener("playing",()=>pl.classList.remove("loading"));
+  vd.addEventListener("ended",()=>{vd.currentTime=0;show()});
+  vd.addEventListener("timeupdate",()=>{if(dragging||!vd.duration)return;const p=vd.currentTime/vd.duration;seek.value=Math.round(p*1000);seek.style.setProperty("--p",p*100+"%");tEl.textContent=fmt(vd.currentTime)});
+  seek.addEventListener("input",()=>{dragging=true;const p=seek.value/1000;seek.style.setProperty("--p",p*100+"%");if(vd.duration){vd.currentTime=p*vd.duration;tEl.textContent=fmt(vd.currentTime)}show()});
+  seek.addEventListener("change",()=>{dragging=false;show()});
+  big.addEventListener("click",e=>{e.stopPropagation();toggle()});
+  /* tap the video: if the controls are hidden, bring them back; otherwise play/pause */
+  pl.addEventListener("click",e=>{if(e.target.closest(".pl__bar"))return;if(pl.classList.contains("idle")){show();return}toggle()});
+  pl.addEventListener("pointermove",e=>{if(e.pointerType==="mouse")show()});
+  pl.addEventListener("keydown",e=>{if(e.key===" "||e.key==="k"){e.preventDefault();toggle()}else if(e.key==="ArrowRight"){vd.currentTime+=5;show()}else if(e.key==="ArrowLeft"){vd.currentTime-=5;show()}});
+  vd.play().catch(()=>show());
+}
 function openVideo(v,isReel){
   lastFocus=document.activeElement;
   const vert=v&&v.ratio==="9:16";
   let media;
-  if(isReel) media=`<video controls autoplay playsinline poster="media-poster.jpg" controlslist="nodownload noremoteplayback noplaybackrate" disablepictureinpicture oncontextmenu="return false"><source src="media-showreel.mp4" type="video/mp4"></video>`;
+  if(isReel) media=player("media-showreel.mp4","media-poster.jpg");
+  else if(v.file) media=player(v.file,v.poster||"");
   else if(v.url && embed(v.url)) media=`<iframe src="${embed(v.url)}" allow="autoplay; fullscreen" allowfullscreen title="${v.title}"></iframe>${/drive\.google/.test(v.url)?'<span class="lb__shield" aria-hidden="true"></span>':""}`;
   else media=`${thumb(v,VIDEOS.indexOf(v))}<div class="lb__ph"><p>This is a sample slot. Add the YouTube or Vimeo link for this video in the VIDEOS list and it will play here.</p></div>`;
   lb.innerHTML=`<div class="lb__box ${vert?"v":""}">
     <div class="lb__bar"><div><b>${isReel?"Showreel":v.title}</b><small>${isReel?"MAS Pixels · 0:34":GENRES[v.genre]+(v.dur?" · "+v.dur:"")}</small></div><button class="x" type="button" aria-label="Close player">✕</button></div>
     <div class="lb__media" style="${!isReel&&v.ratio==="2.39:1"?"aspect-ratio:2.39/1":""}">${media}</div></div>`;
   lb.hidden=false;document.body.style.overflow="hidden";lb.querySelector(".x").focus();cur.classList.remove("on");
+  /* hosted videos: the player takes the exact shape of the video, so nothing is cropped */
+  {const box=lb.querySelector(".lb__box"),med=lb.querySelector(".lb__media");
+   wirePlayer(lb,r=>{if(!r)return;box.classList.toggle("v",r<0.8);med.style.aspectRatio=r<0.8?`${r}`:`${r}`;box.style.setProperty("--ar",r);if(v)v.ratio=r<0.8?"9:16":r>2?"2.39:1":"16:9"});}
   /* check the real shape of a Drive video from its thumbnail, and reshape the player to match */
-  const did=!isReel&&(v.url||"").match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]{10,})/);
+  const did=!isReel&&!v.file&&(v.url||"").match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]{10,})/);
   if(did){const box=lb.querySelector(".lb__box"),med=lb.querySelector(".lb__media"),p=new Image();p.referrerPolicy="no-referrer";
     p.onload=()=>{if(!box.isConnected||!p.naturalWidth)return;const r=p.naturalWidth/p.naturalHeight;
       v.ratio=r<0.8?"9:16":r>2?"2.39:1":"16:9";box.classList.toggle("v",r<0.8);med.style.aspectRatio=r<0.8?"":r>2?"2.39/1":"16/9"};
