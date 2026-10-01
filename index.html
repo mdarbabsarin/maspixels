@@ -20,7 +20,10 @@
 <meta name="twitter:title" content="MAS Pixels | Video Editor Md Arbab Sarin">
 <meta name="twitter:description" content="MAS Pixels is the video editing studio of Md Arbab Sarin: commercials, reels and short-form, real-estate walkthroughs, music videos and documentaries for brands in India and abroad.">
 <meta name="twitter:image" content="https://maspixels.netlify.app/media-poster.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23f2b61f%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2252%22 text-anchor=%22middle%22 font-family=%22Arial Black,Impact,sans-serif%22 fill=%22%2315120f%22%3EM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <link rel="preload" as="image" href="poses-thumbsup.webp" fetchpriority="high">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://maspixels.netlify.app/#arbab","name":"Md Arbab Sarin","jobTitle":"Video Editor","url":"https://maspixels.netlify.app/","image":"https://maspixels.netlify.app/poses-thumbsup.webp","email":"mailto:maspixelscontents@gmail.com","sameAs":["https://www.instagram.com/mas.pixels","https://www.linkedin.com/in/md-arbab-sarin-75567b214"],"worksFor":{"@id":"https://maspixels.netlify.app/#brand"}},{"@type":"ProfessionalService","@id":"https://maspixels.netlify.app/#brand","name":"MAS Pixels","alternateName":"maspixels","url":"https://maspixels.netlify.app/","logo":"https://maspixels.netlify.app/brand-logo.webp","image":"https://maspixels.netlify.app/media-poster.jpg","description":"MAS Pixels is the video editing studio of Md Arbab Sarin: commercials, reels and short-form, real-estate walkthroughs, music videos and documentaries for brands in India and abroad.","email":"maspixelscontents@gmail.com","founder":{"@id":"https://maspixels.netlify.app/#arbab"},"areaServed":"Worldwide","sameAs":["https://www.instagram.com/mas.pixels","https://www.linkedin.com/in/md-arbab-sarin-75567b214"]},{"@type":"WebSite","name":"MAS Pixels","alternateName":["maspixels","MAS Pixels by Md Arbab Sarin"],"url":"https://maspixels.netlify.app/"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -90,7 +93,18 @@ h2 em,h3 em{font-style:italic;color:var(--flame)}
 .tc{font:500 12px/1 ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;padding:7px 10px;border-radius:var(--pill);background:var(--ink);color:var(--cream);display:flex;gap:6px;align-items:center}
 .tc i{width:7px;height:7px;border-radius:50%;background:var(--flame);animation:blink 1.2s steps(2) infinite}
 .nav .btn{padding:11px 18px}
-@media (max-width:900px){.links{display:none}.nav .wrap{gap:12px}.nav .wrap>.btn{margin-left:auto}}
+.menu-btn{display:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:var(--cream);color:var(--ink);place-items:center;cursor:pointer;padding:0;flex:none}
+.menu-btn svg{width:20px;height:20px}.menu-btn .x2{display:none}
+.nav.open .menu-btn .bars{display:none}.nav.open .menu-btn .x2{display:block}
+@media (max-width:900px){
+  .nav .wrap{gap:10px}.nav .wrap>.btn{margin-left:auto}.menu-btn{display:grid}
+  .links{display:none;position:absolute;left:0;right:0;top:100%;margin:0;flex-direction:column;gap:0;padding:8px var(--gut) 20px;background:var(--cream);border-bottom:2px solid var(--ink);box-shadow:0 14px 24px -12px rgba(20,18,16,.35)}
+  .nav.open .links{display:flex;animation:menuIn .22s cubic-bezier(.2,.8,.2,1)}
+  .links a{font:600 26px/1.1 var(--serif);letter-spacing:0;text-transform:none;padding:14px 0;border-bottom:1px solid var(--line)}
+  .links a:last-child{border-bottom:0}
+  .links a::after{display:none}
+}
+@keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 @media (max-width:520px){.nav .btn .t{display:none}.nav .btn{padding:11px 14px}.brand{font-size:21px}}
 
 /* hero */
@@ -300,9 +314,9 @@ footer.site{padding-block:56px 32px}
 .lb[hidden],[hidden]{display:none!important}
 .lb{position:fixed;inset:0;z-index:100;background:rgba(20,18,16,.94);display:grid;place-items:center;padding:24px var(--gut);animation:fade .18s}
 .lb__box{width:min(1000px,100%);display:grid;gap:14px;color:var(--cream)}
-.lb__box.v{width:min(420px,100%)}
+.lb__box.v{width:min(420px,100%,calc((100vh - 150px) * 9 / 16));width:min(420px,100%,calc((100dvh - 150px) * 9 / 16))}
 .lb__media{position:relative;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;border:2px solid var(--cream);background:#000;max-height:78vh}
-.lb__box.v .lb__media{aspect-ratio:9/16}
+.lb__box.v .lb__media{aspect-ratio:9/16;max-height:none}
 .lb__media video,.lb__media iframe{width:100%;height:100%;border:0;object-fit:contain}
 /* covers the Drive player's "open in new window" button so viewers stay on this site */
 .lb__shield{position:absolute;top:0;right:0;width:72px;height:64px;z-index:2;background:transparent}
@@ -363,10 +377,11 @@ footer.site{padding-block:56px 32px}
   <span class="prog" id="prog" aria-hidden="true"></span>
   <div class="wrap">
     <a class="brand brand--logo" href="#top" aria-label="MAS Pixels, back to top"><img src="brand-logo.webp" alt="MAS Pixels — Md Arbab Sarin" width="600" height="366"><svg aria-hidden="true"><use href="#burst"/></svg></a>
-    <nav class="links" aria-label="Sections">
+    <nav class="links" id="navLinks" aria-label="Sections">
       <a href="#about">About</a><a href="#services">Services</a><a href="#work">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a>
     </nav>
     <a class="btn" href="#contact"><span class="t">Let's work together</span> <span class="arr">↗</span></a>
+    <button class="menu-btn" type="button" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
 </header>
 
@@ -930,6 +945,12 @@ function openVideo(v,isReel){
     <div class="lb__bar"><div><b>${isReel?"Showreel":v.title}</b><small>${isReel?"MAS Pixels · 0:34":GENRES[v.genre]+(v.dur?" · "+v.dur:"")}</small></div><button class="x" type="button" aria-label="Close player">✕</button></div>
     <div class="lb__media" style="${!isReel&&v.ratio==="2.39:1"?"aspect-ratio:2.39/1":""}">${media}</div></div>`;
   lb.hidden=false;document.body.style.overflow="hidden";lb.querySelector(".x").focus();cur.classList.remove("on");
+  /* check the real shape of a Drive video from its thumbnail, and reshape the player to match */
+  const did=!isReel&&(v.url||"").match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]{10,})/);
+  if(did){const box=lb.querySelector(".lb__box"),med=lb.querySelector(".lb__media"),p=new Image();p.referrerPolicy="no-referrer";
+    p.onload=()=>{if(!box.isConnected||!p.naturalWidth)return;const r=p.naturalWidth/p.naturalHeight;
+      v.ratio=r<0.8?"9:16":r>2?"2.39:1":"16:9";box.classList.toggle("v",r<0.8);med.style.aspectRatio=r<0.8?"":r>2?"2.39/1":"16/9"};
+    p.src=`https://drive.google.com/thumbnail?id=${did[1]}&sz=w320`;}
 }
 function closeLb(){lb.hidden=true;lb.innerHTML="";document.body.style.overflow="";lastFocus&&lastFocus.focus()}
 lb.addEventListener("click",e=>{if(e.target===lb||e.target.closest(".x"))closeLb()});
@@ -943,6 +964,15 @@ if(matchMedia("(pointer:fine)").matches){
   addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;cur.classList.toggle("on",!!e.target.closest(".card,.reel-btn")&&lb.hidden)});
   (function loop(){cx+=(tx-cx)*.25;cy+=(ty-cy)*.25;cur.style.left=cx+"px";cur.style.top=cy+"px";requestAnimationFrame(loop)})();
 }
+
+/* ---- mobile menu ---- */
+{const nav=document.querySelector(".nav"),mb=$("#menuBtn");
+ const setMenu=o=>{nav.classList.toggle("open",o);mb.setAttribute("aria-expanded",o);mb.setAttribute("aria-label",o?"Close menu":"Open menu")};
+ mb.addEventListener("click",()=>setMenu(!nav.classList.contains("open")));
+ $("#navLinks").addEventListener("click",e=>{if(e.target.closest("a"))setMenu(false)});
+ addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+ document.addEventListener("click",e=>{if(!e.target.closest(".nav"))setMenu(false)});
+ addEventListener("resize",()=>{if(innerWidth>900)setMenu(false)});}
 
 /* ---- contact form ---- */
 $("#form").addEventListener("submit",async e=>{
