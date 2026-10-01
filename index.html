@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4ede1">
+<meta property="og:title" content="MAS Pixels | Video editor Md Arbab Sarin">
+<meta property="og:description" content="Commercials, reels, real-estate, music and documentary edits by Md Arbab Sarin.">
+<meta property="og:image" content="media-poster.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23f2b61f%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2252%22 text-anchor=%22middle%22 font-family=%22Arial Black,Impact,sans-serif%22 fill=%22%2315120f%22%3EM%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" href="poses-thumbsup.webp" fetchpriority="high">
+<title>MAS Pixels</title>
+<meta name="description" content="MAS Pixels — video editing by Md Arbab Sarin. Commercials, music videos, short-form and YouTube.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&display=swap">
+<style>
+:root{
+  --cream:#f4ede1;--cream-deep:#eadfcb;--ink:#15120f;--ink-muted:#5e554b;--line:#d6c9b3;
+  --mustard:#f2b61f;--flame:#e8491d;--flame-deep:#ad310c;--night:#141210;--night-muted:#a89e90;
+  --r-sm:6px;--r-md:14px;--pill:999px;--pop:4px 4px 0 var(--ink);
+  --display:Anton,"Arial Narrow",Impact,sans-serif;--serif:Fraunces,Georgia,serif;--sans:"DM Sans",system-ui,sans-serif;
+  --wrap:1240px;--gut:clamp(16px,4vw,40px);--sec:clamp(72px,10vw,120px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 16px/1.6 var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+.night :focus-visible,.lb :focus-visible{outline-color:var(--mustard)}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut)}
+section{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font:700 12px/16px var(--sans);letter-spacing:1.6px;text-transform:uppercase;color:var(--flame-deep);margin:0 0 14px}
+.night .eyebrow{color:var(--mustard)}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;text-wrap:balance}
+h2{font-size:clamp(38px,5.6vw,64px);line-height:1.02;letter-spacing:-1px}
+h2 em,h3 em{font-style:italic;color:var(--flame)}
+.night h2 em{color:var(--mustard)}
+.lede{font-size:18px;line-height:28px;color:var(--ink-muted);max-width:52ch;margin:0}
+.night .lede{color:var(--night-muted)}
+.scribble{display:block;width:150px;height:14px;margin-top:10px;color:var(--flame)}
+
+/* line reveals */
+.ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ln>span{display:inline-block}
+.rv-on .ln>span{transform:translateY(108%);transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.rv-on .in .ln>span{transform:none}
+.rv-on .in .ln:nth-child(2)>span{transition-delay:.07s}.rv-on .in .ln:nth-child(3)>span{transition-delay:.14s}
+
+/* buttons */
+.btn{--bg:var(--mustard);--fg:var(--ink);--wipe:var(--ink);--wfg:var(--cream);position:relative;display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:var(--pill);background:var(--bg);color:var(--fg);font:700 13px/16px var(--sans);letter-spacing:.6px;text-transform:uppercase;text-decoration:none;border:2px solid var(--ink);cursor:pointer;overflow:hidden;isolation:isolate;transition:color .25s,transform .12s;white-space:nowrap}
+.btn::before{content:"";position:absolute;inset:0;background:var(--wipe);transform:scaleX(0);transform-origin:left;transition:transform .25s cubic-bezier(.7,0,.2,1);z-index:-1}
+.btn:hover{color:var(--wfg)}.btn:hover::before{transform:scaleX(1)}
+.btn:active{transform:scale(.97)}
+.btn .arr{transition:transform .25s;display:inline-block}.btn:hover .arr{transform:translate(4px,-2px)}
+.btn--dark{--bg:var(--ink);--fg:var(--cream);--wipe:var(--mustard);--wfg:var(--ink)}
+.btn--ghost{--bg:transparent}
+.night .btn--ghost{--fg:var(--cream);border-color:var(--cream);--wipe:var(--cream);--wfg:var(--ink)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--cream) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:76px}
+.brand{display:flex;align-items:center;gap:6px;font:400 24px/1 var(--display);letter-spacing:.3px;text-decoration:none}
+.brand svg{width:20px;height:20px;color:var(--flame);animation:spin 12s linear infinite}
+.brand--logo img{height:54px;width:auto;display:block;transition:transform .2s}
+.brand--logo{gap:8px}.brand--foot img{height:96px}.brand--logo svg{width:24px;height:24px}
+.brand--logo:hover img{transform:rotate(-2deg) scale(1.04)}
+@media (max-width:520px){.brand--logo img{height:44px}.brand--foot img{height:76px}}
+.links{display:flex;gap:22px;margin-left:auto}
+.links a{font:700 12px/1 var(--sans);letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;position:relative;padding:6px 0}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--flame);transform:scaleX(0);transform-origin:right;transition:transform .25s}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+.tc{font:500 12px/1 ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;padding:7px 10px;border-radius:var(--pill);background:var(--ink);color:var(--cream);display:flex;gap:6px;align-items:center}
+.tc i{width:7px;height:7px;border-radius:50%;background:var(--flame);animation:blink 1.2s steps(2) infinite}
+.nav .btn{padding:11px 18px}
+@media (max-width:900px){.links{display:none}.nav .wrap{gap:12px}.nav .wrap>.btn{margin-left:auto}}
+@media (max-width:520px){.nav .btn .t{display:none}.nav .btn{padding:11px 14px}.brand{font-size:21px}}
+
+/* hero */
+.hero{overflow:hidden;border-bottom:2px solid var(--ink)}
+.hero__bg{position:absolute;inset:-90px 0;z-index:0}
+.hero__bg video{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.hero__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--cream) 30%,rgba(244,237,225,.72) 62%,rgba(244,237,225,.5))}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:24px;align-items:end;padding-block:56px 0}
+.hero__copy{padding-bottom:72px}
+.hero h1{font:400 clamp(84px,13vw,176px)/.86 var(--display);letter-spacing:-1px;text-transform:uppercase;margin:0}
+.hero h1 .o{color:transparent;-webkit-text-stroke:2px var(--ink)}
+.who{font:600 italic clamp(22px,2.4vw,30px)/1.2 var(--serif);margin:18px 0 14px}
+.who b{font-style:normal;color:var(--flame-deep)}
+.hero .lede{margin-bottom:28px}
+.hero__stage{position:relative;height:clamp(380px,46vw,600px)}
+.stamp{position:absolute;right:4%;top:6%;width:128px;height:128px;z-index:6;color:var(--ink);animation:spin 18s linear infinite}
+.peek{position:absolute;left:var(--gut);bottom:18px;z-index:1;display:flex;gap:8px;align-items:center;font:700 11px/1 var(--sans);letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-muted)}
+.peek i{width:8px;height:8px;border-radius:50%;background:var(--flame);animation:blink 1.2s steps(2) infinite}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-top:40px}.hero__copy{padding-bottom:0}.hero__stage{height:400px}.stamp{width:96px;height:96px;right:0}.hero__bg::after{background:rgba(244,237,225,.8)}}
+
+/* film strip marquee */
+.strip{position:relative;z-index:7;background:var(--night);color:var(--cream);padding-block:18px;overflow:hidden}
+.strip::before,.strip::after{content:"";position:absolute;left:0;right:0;height:8px;background:radial-gradient(circle at 8px 4px,var(--cream) 0 3px,transparent 3.5px) 0 0/24px 8px repeat-x}
+.strip::before{top:4px}.strip::after{bottom:4px}
+.marq{display:flex;width:max-content;animation:marq 38s linear infinite}
+.marq span{display:flex;align-items:center;gap:28px;padding-right:28px;font:400 clamp(22px,3vw,34px)/1.3 var(--display);letter-spacing:.8px;text-transform:uppercase;white-space:nowrap}
+.marq svg{width:22px;height:22px;color:var(--mustard)}
+.strip:hover .marq{animation-play-state:paused}
+
+/* about + stats */
+.about{background:var(--cream-deep);padding-block:var(--sec)}
+.about .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:center}
+.about__stage{position:relative;height:clamp(360px,40vw,520px)}
+.about p{margin:18px 0 0}
+.stats{display:grid;grid-template-columns:repeat(5,auto);justify-content:space-between;gap:0;margin-top:48px;border-top:2px solid var(--ink)}
+.stat{padding:22px 14px 0 0;min-width:0;display:flex;flex-direction:column;gap:6px}
+.stat+.stat{padding-left:14px;border-left:1px solid var(--line)}
+.stat b{white-space:nowrap;font:400 clamp(30px,3.3vw,50px)/1 var(--display);font-variant-numeric:tabular-nums;letter-spacing:.3px}
+.stat b em{font-style:normal;color:var(--flame)}
+.stat b{display:inline-block;transform-origin:left bottom}
+.stat b.hit{animation:hit .35s cubic-bezier(.2,.8,.2,1.4)}
+@keyframes hit{40%{transform:scale(1.08)}}
+.stat>span{font:700 11px/15px var(--sans);letter-spacing:1.4px;text-transform:uppercase;color:var(--ink-muted)}
+@media (max-width:980px){.about .wrap{grid-template-columns:1fr}.about__stage{height:340px}.stats{grid-template-columns:repeat(3,1fr);row-gap:24px}.stat:nth-child(4){border-left:0;padding-left:0}}
+@media (max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(odd){border-left:0;padding-left:0}.stat:nth-child(4){border-left:1px solid var(--line);padding-left:16px}}
+
+/* services */
+.night{background:var(--night);color:var(--cream)}
+.services{padding-block:var(--sec)}
+.services .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:48px;align-items:center}
+.svc{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:44px;border-top:1px solid #3a342d}
+.svc article{padding:26px 22px 26px 0;border-bottom:1px solid #3a342d}
+.svc article:nth-child(even){padding-left:22px;border-left:1px solid #3a342d}
+.svc svg{width:30px;height:30px;color:var(--mustard);margin-bottom:14px}
+.svc h3{font-size:22px;line-height:1.2;margin-bottom:8px}
+.svc p{margin:0;color:var(--night-muted);font-size:15px;line-height:24px}
+.svc article{transition:background .2s}
+.svc article:hover{background:#1f1b18}
+.services__stage{position:relative;height:clamp(400px,44vw,580px)}
+@media (max-width:900px){.services .wrap{grid-template-columns:1fr}.services__stage{height:360px;order:-1}}
+@media (max-width:560px){.svc{grid-template-columns:1fr}.svc article:nth-child(even){padding-left:0;border-left:0}}
+
+/* work */
+.work{padding-block:var(--sec)}
+.work__head{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:end}
+.work__stage{position:relative;height:340px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:36px 0 32px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:var(--pill);border:2px solid var(--ink);background:var(--cream);font:500 14px/18px var(--sans);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.chip:hover{transform:translate(-2px,-2px);box-shadow:var(--pop)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.chip .n{font-size:12px;opacity:.7;font-variant-numeric:tabular-nums}
+.grid{display:flex;gap:24px;align-items:flex-start}
+.gcol{flex:1 1 0;min-width:0}
+.card{break-inside:avoid;display:block;width:100%;margin:0 0 28px;padding:0;border:0;background:none;text-align:left;cursor:pointer;animation:cardIn .45s cubic-bezier(.2,.8,.2,1) both}
+.frame{position:relative;border-radius:var(--r-md);overflow:hidden;border:2px solid var(--ink);transition:transform .2s,box-shadow .2s;max-width:100%}
+.card:hover .frame,.card:focus-visible .frame{transform:translate(-3px,-3px);box-shadow:var(--pop)}
+.thumb{container-type:size;position:absolute;inset:0;transition:transform .5s;display:grid;place-items:center;overflow:hidden}
+.card:hover .thumb{transform:scale(1.05)}
+.thumb .big{font:400 clamp(44px,6vw,86px)/.85 var(--display);text-transform:uppercase;text-align:center;padding:0 10px;mix-blend-mode:multiply;opacity:.9}
+.thumb .real{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity .4s}.thumb .real.ok{opacity:1}
+.thumb .bar{position:absolute;left:0;right:0;height:11%;background:#000}
+.tag{position:absolute;left:10px;top:10px;z-index:2;padding:4px 10px;border-radius:var(--pill);background:var(--mustard);color:var(--ink);border:1.5px solid var(--ink);font:700 10px/14px var(--sans);letter-spacing:1px;text-transform:uppercase}
+.tcode{position:absolute;right:10px;bottom:9px;z-index:2;font:500 11px/1 ui-monospace,Menlo,monospace;color:#fff;background:rgba(0,0,0,.55);padding:4px 6px;border-radius:4px;font-variant-numeric:tabular-nums}
+.meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:12px}
+.meta b{font:600 18px/1.25 var(--serif)}
+.meta small{font:400 13px/18px var(--sans);color:var(--ink-muted);white-space:nowrap}
+.more{display:flex;justify-content:center;margin-top:12px}
+@media (max-width:860px){.work__head{grid-template-columns:1fr}.work__stage{height:360px}}
+
+/* process */
+.process{background:var(--cream-deep);padding-block:var(--sec);border-block:2px solid var(--ink)}
+.process .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.suite{position:relative;height:clamp(380px,40vw,520px)}
+.process__stage{position:absolute;inset:0}
+.steps{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:0;counter-reset:s}
+.steps li{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-top:1px solid var(--line);counter-increment:s}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s,decimal-leading-zero);font:400 34px/1 var(--display);color:var(--flame)}
+.steps h3{font-size:21px;margin-bottom:4px}
+.steps p{margin:0;color:var(--ink-muted);font-size:15px;line-height:24px}
+@media (max-width:900px){.process .wrap{grid-template-columns:1fr}.suite{order:2;height:400px}}
+
+/* testimonials */
+.voices{background:var(--flame);color:var(--ink);padding-block:var(--sec);overflow:hidden}
+.voices h2 em{color:var(--cream)}
+.voices .eyebrow{color:var(--ink)}
+.qwrap{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;margin-top:44px}
+.quotes{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 48px)/3);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 6px 10px 0;scrollbar-width:none}
+.quotes::-webkit-scrollbar{display:none}
+.quotes .q{scroll-snap-align:start}
+.qnav{width:52px;height:52px;border-radius:50%;border:2px solid var(--ink);background:var(--cream);color:var(--ink);display:grid;place-items:center;cursor:pointer;box-shadow:var(--pop);transition:transform .15s,box-shadow .15s,background .15s,opacity .2s}
+.qnav:hover{background:var(--ink);color:var(--cream)}
+.qnav:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.qnav:disabled{opacity:.35;cursor:default;box-shadow:none;background:var(--cream);color:var(--ink)}
+.qnav svg{width:22px;height:22px}
+.qcount{margin-top:14px;text-align:center;font:700 12px/1 var(--sans);letter-spacing:1.4px;font-variant-numeric:tabular-nums}
+.q{margin:0;background:var(--cream);border:2px solid var(--ink);border-radius:var(--r-md);padding:24px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--pop)}
+.q blockquote{margin:0;font:500 17px/1.5 var(--serif)}
+.q .ph{color:var(--ink-muted);font-style:italic;font-weight:600}
+.q footer{margin-top:auto;font:700 11px/16px var(--sans);letter-spacing:1.2px;text-transform:uppercase}
+.q footer span{display:block;color:var(--ink-muted);font-weight:500;letter-spacing:.4px;text-transform:none;font-size:13px}
+.clients{margin-top:48px;display:grid;gap:14px}
+.clients>b{font:700 11px/16px var(--sans);letter-spacing:1.4px;text-transform:uppercase}
+.lrow{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ltrack{display:flex;gap:14px;padding-right:14px;width:max-content;animation:marq 32s linear infinite}
+.lrow.rev .ltrack{animation-direction:reverse;animation-duration:38s}
+.lrow:hover .ltrack{animation-play-state:paused}
+.logo{flex:none;height:88px;display:flex;align-items:center;justify-content:center;padding:14px 24px;background:var(--cream);border:2px solid var(--ink);border-radius:var(--r-md);overflow:hidden}
+.logo img{display:block;max-width:240px;object-fit:contain;transition:transform .25s}
+.logo:hover img{transform:scale(1.05)}
+.logo.flat img{max-width:none}
+.logo span{font:400 20px/1 var(--display);letter-spacing:.6px;text-transform:uppercase;color:var(--ink-muted)}
+@media (max-width:560px){.logo{height:72px;padding:10px 16px}.logo img{zoom:.8}}
+@media (max-width:900px){.quotes{grid-auto-columns:calc((100% - 24px)/2)}}
+@media (max-width:620px){.quotes{grid-auto-columns:100%}.qwrap{gap:8px}.qnav{width:42px;height:42px}}
+
+/* contact */
+.contact{background:var(--mustard);padding-block:var(--sec);overflow:hidden}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:start}
+.contact h2 em{color:var(--ink);text-decoration:underline;text-decoration-color:var(--flame);text-decoration-thickness:5px;text-underline-offset:8px}
+.contact .eyebrow{color:var(--ink)}
+.contact .lede{color:var(--ink)}
+form{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:flex;flex-direction:column;gap:6px}
+.f.full{grid-column:1/-1}
+label{font:700 11px/14px var(--sans);letter-spacing:1.2px;text-transform:uppercase}
+input,select,textarea{font:400 16px/1.4 var(--sans);color:var(--ink);background:var(--cream);border:2px solid var(--ink);border-radius:var(--r-sm);padding:12px 14px;width:100%;min-width:0}
+textarea{min-height:120px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;box-shadow:var(--pop)}
+.types{display:flex;flex-wrap:wrap;gap:8px}
+.types input{position:absolute;opacity:0;width:1px;height:1px}
+.types label{cursor:pointer;padding:8px 14px;border:2px solid var(--ink);border-radius:var(--pill);background:var(--cream);font:500 14px/18px var(--sans);letter-spacing:0;text-transform:none;transition:background .15s}
+.types input:checked+label{background:var(--ink);color:var(--cream)}
+.types input:focus-visible+label{outline:2px solid var(--ink);outline-offset:3px}
+.sent{grid-column:1/-1;background:var(--cream);border:2px solid var(--ink);border-radius:var(--r-md);padding:18px 20px;display:grid;gap:10px}
+.sent p{margin:0}
+.mail{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mail code{font:500 15px/1 ui-monospace,Menlo,monospace;background:var(--cream-deep);padding:10px 12px;border-radius:var(--r-sm);user-select:all}
+.err{color:#8a1c00;font-size:13px;min-height:1em}
+.contact__side{position:relative;height:clamp(420px,46vw,620px)}
+.direct{position:absolute;left:0;right:0;bottom:0;z-index:6;background:var(--ink);color:var(--cream);border-radius:var(--r-md);padding:16px 18px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.direct span{font:700 11px/1 var(--sans);letter-spacing:1.4px;text-transform:uppercase;color:var(--mustard)}
+.direct b{font:500 15px/1.3 var(--sans);word-break:break-all}
+.contact__stage{position:absolute;inset:0 0 70px 0}
+@media (max-width:900px){.contact .wrap{grid-template-columns:1fr}.contact__side{height:440px;order:-1}}
+@media (max-width:560px){form{grid-template-columns:1fr}}
+
+/* footer */
+footer.site{padding-block:56px 32px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.foot .brand{font-size:40px}
+.foot h4{margin:0 0 12px;font:700 11px/1 var(--sans);letter-spacing:1.4px;text-transform:uppercase;color:var(--mustard)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a{text-decoration:none;color:var(--night-muted)}.foot a:hover{color:var(--cream)}
+.foot p{color:var(--night-muted);margin:12px 0 0;max-width:36ch}
+.socials{display:flex;gap:12px;margin-top:18px}
+.socials a{width:46px;height:46px;border-radius:50%;border:2px solid var(--cream);color:var(--cream);display:grid;place-items:center;transition:background .2s,color .2s,transform .2s,border-color .2s}
+.socials a:hover{background:var(--mustard);border-color:var(--mustard);color:var(--ink);transform:translateY(-3px) rotate(-6deg)}
+.socials svg{width:20px;height:20px}
+.legal{margin-top:48px;padding-top:20px;border-top:1px solid #3a342d;color:var(--night-muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:700px){.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
+
+/* the floating character */
+#mas{position:fixed;left:0;top:0;z-index:5;pointer-events:none;will-change:transform,width,height;opacity:0;transition:opacity .4s}
+#mas.ready{opacity:1}
+#mas .bob{position:absolute;inset:0;animation:bob 4.5s ease-in-out infinite}
+.disc{position:absolute;inset:0;border-radius:50%;border:3px solid var(--ink);background:var(--mustard);transition:background .35s;box-shadow:6px 6px 0 var(--ink)}
+.disc.flame{background:var(--flame)}
+/* pop-out: below the circle's middle the photo is clipped to the circle; above it the head and hands break out */
+.pop{position:absolute;left:-20%;width:140%;bottom:0;height:130%;pointer-events:none;
+  -webkit-mask:linear-gradient(#000 0 0) 50% 0/calc(71.43% - 6px) 61.6% no-repeat,linear-gradient(#000 0 0) 50% 0/100% 23.08% no-repeat,radial-gradient(closest-side,#000 calc(100% - 3px),transparent calc(100% - 2px)) 50% 100%/71.43% 76.92% no-repeat;
+          mask:linear-gradient(#000 0 0) 50% 0/calc(71.43% - 6px) 61.6% no-repeat,linear-gradient(#000 0 0) 50% 0/100% 23.08% no-repeat,radial-gradient(closest-side,#000 calc(100% - 3px),transparent calc(100% - 2px)) 50% 100%/71.43% 76.92% no-repeat}
+.pop img{position:absolute;left:50%;bottom:0;height:95.4%;width:auto;max-width:none;transform:translateX(-50%);opacity:0}
+/* phones: the hero (thumbs-up) and Projects (thinking) graphics sit a little higher; photo and circle keep their size */
+@media (max-width:600px){.hero__stage .stage,.work__stage .stage{translate:0 -28px}}
+.stage{pointer-events:none;container-type:size}
+.static-pose{position:absolute;inset:0;display:grid;place-items:end center}
+.static-pose .ring{position:relative;width:min(92cqw,70cqh);aspect-ratio:1}
+.static-pose .pop img{opacity:1}
+/* cursor */
+#cur{position:fixed;left:0;top:0;z-index:200;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--mustard);border:2px solid var(--ink);display:grid;place-items:center;font:700 11px/1 var(--sans);letter-spacing:1.4px;pointer-events:none;transform:scale(0);transition:transform .2s cubic-bezier(.2,.8,.2,1)}
+#cur.on{transform:scale(1)}
+#cur svg{width:14px;height:14px;margin-bottom:3px}
+@media (pointer:fine){.card,.reel-btn{cursor:none}}
+
+/* lightbox */
+.lb[hidden],[hidden]{display:none!important}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(20,18,16,.94);display:grid;place-items:center;padding:24px var(--gut);animation:fade .18s}
+.lb__box{width:min(1000px,100%);display:grid;gap:14px;color:var(--cream)}
+.lb__box.v{width:min(420px,100%)}
+.lb__media{position:relative;aspect-ratio:16/9;border-radius:var(--r-md);overflow:hidden;border:2px solid var(--cream);background:#000;max-height:78vh}
+.lb__box.v .lb__media{aspect-ratio:9/16}
+.lb__media video,.lb__media iframe{width:100%;height:100%;border:0;object-fit:contain}
+/* covers the Drive player's "open in new window" button so viewers stay on this site */
+.lb__shield{position:absolute;top:0;right:0;width:72px;height:64px;z-index:2;background:transparent}
+.lb__ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
+.lb__ph p{background:rgba(20,18,16,.85);padding:14px 18px;border-radius:var(--r-md);margin:0;max-width:40ch;font-size:15px}
+.lb__bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.lb__bar b{font:600 22px/1.2 var(--serif)}
+.lb__bar small{display:block;color:var(--night-muted);font-size:13px}
+.x{width:44px;height:44px;border-radius:50%;border:2px solid var(--cream);background:transparent;color:var(--cream);cursor:pointer;font-size:20px;line-height:1}
+.x:hover{background:var(--cream);color:var(--ink)}
+
+
+/* ===== scroll animations ===== */
+.fx .cut{opacity:1;filter:blur(0);scale:1;
+  transition:opacity .7s ease var(--d,0ms),filter .8s cubic-bezier(.2,.8,.2,1) var(--d,0ms),scale .8s cubic-bezier(.2,.8,.2,1) var(--d,0ms),color .25s,background-color .2s,box-shadow .15s,transform .12s}
+.fx .cut:not(.in){opacity:0;filter:blur(12px);scale:1.03;transition-duration:.4s;transition-delay:0ms}
+/* headlines: blur to sharp, line by line */
+.rv-on .ln{overflow:visible}
+.rv-on .ln>span{transform:none!important;opacity:1;filter:blur(0);transition:opacity .7s ease,filter .8s cubic-bezier(.2,.8,.2,1)}
+.rv-on .rv:not(.in) .ln>span{opacity:0;filter:blur(14px);transition-duration:.35s;transition-delay:0s!important}
+.rv-on .in .ln:nth-child(2)>span{transition-delay:.12s}.rv-on .in .ln:nth-child(3)>span{transition-delay:.24s}
+/* section wipe: a colour band sweeps across the top of each section as it arrives */
+.swipe{position:absolute;left:0;right:0;top:0;height:min(46vh,420px);z-index:4;pointer-events:none;transform:scaleX(0);transform-origin:left}
+.swipe.go{animation:sweep .9s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes sweep{0%{transform:scaleX(0);transform-origin:left}49%{transform:scaleX(1);transform-origin:left}51%{transform:scaleX(1);transform-origin:right}100%{transform:scaleX(0);transform-origin:right}}
+/* scroll progress */
+.prog{position:absolute;left:0;right:0;bottom:-2px;height:3px;background:var(--flame);transform:scaleX(0);transform-origin:left;pointer-events:none}
+/* intro loader */
+#intro{position:fixed;inset:0;z-index:300;background:var(--night);color:var(--cream);display:grid;place-items:center;transition:clip-path .7s cubic-bezier(.7,0,.2,1)}
+#intro.out{clip-path:inset(0 0 100% 0)}
+.intro__in{display:grid;justify-items:center;gap:18px;width:min(320px,70vw)}
+.intro__in img{width:100%;height:auto;animation:introPop .6s cubic-bezier(.2,.8,.2,1.2) both}
+.intro__tc{font:500 14px/1 ui-monospace,Menlo,monospace;letter-spacing:1px;font-variant-numeric:tabular-nums;display:flex;gap:8px;align-items:center}
+.intro__tc i{width:8px;height:8px;border-radius:50%;background:var(--flame);animation:blink 1s steps(2) infinite}
+.intro__bar{width:100%;height:3px;background:#3a342d;overflow:hidden}
+.intro__bar i{display:block;height:100%;background:var(--mustard);transform:scaleX(0);transform-origin:left}
+@keyframes introPop{from{opacity:0;transform:scale(.9)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes morph{0%,100%{border-radius:58% 42% 52% 48%/52% 46% 54% 48%}50%{border-radius:46% 54% 44% 56%/56% 50% 50% 44%}}
+@keyframes play{to{left:100%}}
+@keyframes cardIn{from{opacity:.001;transform:translateY(14px)}}
+@keyframes fade{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="burst" viewBox="0 0 40 40"><path fill="currentColor" d="M20 0l3.2 11.3L33.4 5l-5.1 10.6L40 20l-11.7 4.4 5.1 10.6-10.2-6.3L20 40l-3.2-11.3L6.6 35l5.1-10.6L0 20l11.7-4.4L6.6 5l10.2 6.3z"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4l14 8-14 8z"/></symbol>
+  <symbol id="scrib" viewBox="0 0 150 14"><path d="M2 9c20-6 38-6 56-2s40 4 58-3c10-3 20-3 32 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+</svg>
+
+</head>
+<body>
+<header class="nav">
+  <span class="prog" id="prog" aria-hidden="true"></span>
+  <div class="wrap">
+    <a class="brand brand--logo" href="#top" aria-label="MAS Pixels, back to top"><img src="brand-logo.webp" alt="MAS Pixels — Md Arbab Sarin" width="600" height="366"><svg aria-hidden="true"><use href="#burst"/></svg></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#about">About</a><a href="#services">Services</a><a href="#work">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn" href="#contact"><span class="t">Let's work together</span> <span class="arr">↗</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" data-sec>
+    <div class="hero__bg" aria-hidden="true">
+      <video id="bgloop" autoplay muted loop playsinline preload="metadata" poster="media-poster.jpg" disablepictureinpicture controlslist="nodownload" oncontextmenu="return false"><source src="media-reel.mp4" type="video/mp4"></video>
+    </div>
+    <div class="wrap">
+      <div class="hero__copy">
+        <p class="eyebrow">Video editor · 3+ years</p>
+        <h1 class="rv"><span class="ln"><span>MAS</span></span><span class="ln"><span class="o">PIXELS</span></span></h1>
+        <p class="who">by <b>Md Arbab Sarin</b></p>
+        <p class="lede">I edit for brands, businesses and creators. Commercials, music videos, reels and long-form YouTube, cut so people watch to the end. My edits have pulled in over 1 crore views for clients.</p>
+        <div class="btn-row">
+          <button class="btn btn--dark reel-btn" id="reelBtn" type="button"><svg width="12" height="12" aria-hidden="true"><use href="#play"/></svg> Watch showreel</button>
+          <a class="btn" href="#contact">Let's work together <span class="arr">↗</span></a>
+        </div>
+      </div>
+      <div class="hero__stage">
+        <svg class="stamp" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="circ" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><text font-family="DM Sans,sans-serif" font-weight="700" font-size="9.5" fill="currentColor"><textPath href="#circ" textLength="285" lengthAdjust="spacing">STORYTELLING • CUT • COLOUR • SOUND •</textPath></text><use href="#burst" x="44" y="44" width="32" height="32" style="color:var(--flame)"/></svg>
+        <div class="stage" data-pose="thumbsup" data-blob="mustard" style="position:absolute;inset:10% 13%"></div>
+      </div>
+    </div>
+    <p class="peek"><i></i>Sneak peek</p>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip" aria-label="Genres I edit">
+    <div class="marq" aria-hidden="true">
+      <span>Commercials <svg><use href="#burst"/></svg> Brand films <svg><use href="#burst"/></svg> Music videos <svg><use href="#burst"/></svg> Cinematic <svg><use href="#burst"/></svg> Reels &amp; Shorts <svg><use href="#burst"/></svg> YouTube <svg><use href="#burst"/></svg> Documentary <svg><use href="#burst"/></svg> Business videos <svg><use href="#burst"/></svg></span>
+      <span>Commercials <svg><use href="#burst"/></svg> Brand films <svg><use href="#burst"/></svg> Music videos <svg><use href="#burst"/></svg> Cinematic <svg><use href="#burst"/></svg> Reels &amp; Shorts <svg><use href="#burst"/></svg> YouTube <svg><use href="#burst"/></svg> Documentary <svg><use href="#burst"/></svg> Business videos <svg><use href="#burst"/></svg></span>
+    </div>
+  </div>
+
+  <!-- ABOUT + STATS -->
+  <section class="about" id="about" data-sec>
+    <div class="wrap">
+      <div class="about__stage"><div class="stage" data-pose="clap" data-blob="flame" style="position:absolute;inset:0"></div></div>
+      <div>
+        <p class="eyebrow">About me</p>
+        <h2 class="rv"><span class="ln"><span>Edits that keep</span></span><span class="ln"><span>people <em>watching.</em></span></span></h2>
+        <svg class="scribble" aria-hidden="true"><use href="#scrib"/></svg>
+        <p class="lede">I'm Arbab, the editor behind MAS Pixels. For more than three years I've cut videos for brands, businesses and freelance clients, from 15-second ads to long YouTube episodes. Every edit is built on three things: a hook that stops the scroll, pacing that holds attention, and an ending that drives action.</p>
+        <div class="stats" id="stats">
+          <div class="stat"><b><span data-to="3">3</span><em>+</em></b><span>Years editing</span></div>
+          <div class="stat"><b><span data-to="500">500</span><em>+</em></b><span>Videos delivered</span></div>
+          <div class="stat"><b><span data-to="40">40</span><em>+</em></b><span>Clients</span></div>
+          <div class="stat"><b><span data-to="100" data-views>1 Cr</span><em>+</em></b><span>Views generated</span></div>
+          <div class="stat"><b><span data-to="90" id="retention">90</span><em>%</em></b><span>Clients return</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services night" id="services" data-sec>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Services</p>
+        <h2 class="rv"><span class="ln"><span>What I can</span></span><span class="ln"><span>do for <em>you</em></span></span></h2>
+        <div class="svc">
+          <article><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v12H3z"/><path d="M8 3l4 4 4-4"/></svg><h3>Commercial &amp; brand</h3><p>Ads, product films and business videos that say one thing clearly and end on your call to action.</p></article>
+          <article><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><h3>Short-form social</h3><p>Reels, Shorts and vertical ads with hook-first openings, captions and beat-matched cuts.</p></article>
+          <article><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/></svg><h3>YouTube &amp; documentary</h3><p>Long-form episodes, vlogs and documentary stories, paced to hold retention to the end.</p></article>
+          <article><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><h3>Music &amp; cinematic</h3><p>Music videos, trailers and short films with rhythm, mood and a considered grade.</p></article>
+        </div>
+      </div>
+      <div class="services__stage"><div class="stage" data-pose="tablet" data-blob="flame" style="position:absolute;inset:0"></div></div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="work" id="work" data-sec>
+    <div class="wrap">
+      <div class="work__head">
+        <div>
+          <p class="eyebrow">Featured work</p>
+          <h2 class="rv"><span class="ln"><span>Selected</span></span><span class="ln"><span><em>work</em></span></span></h2>
+          <svg class="scribble" aria-hidden="true"><use href="#scrib"/></svg>
+        </div>
+        <div class="work__stage"><div class="stage" data-pose="thinking" data-blob="mustard" style="position:absolute;inset:30px 0 -30px"></div></div>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter by genre"></div>
+      <div class="grid" id="grid"></div>
+      <div class="more"><button class="btn btn--dark" id="moreBtn" type="button">Load more <span class="arr">↓</span></button></div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process" data-sec>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">How I work</p>
+        <h2 class="rv"><span class="ln"><span>From raw footage</span></span><span class="ln"><span>to <em>final cut</em></span></span></h2>
+        <ol class="steps">
+          <li><div><h3>Brief</h3><p>We talk about your goal, audience and platform. You share footage, references and deadlines.</p></div></li>
+          <li><div><h3>Rough cut</h3><p>I build the story and pacing first, so you review structure before any polish.</p></div></li>
+          <li><div><h3>Polish</h3><p>Colour, sound, captions, graphics and transitions, with revisions on your notes.</p></div></li>
+          <li><div><h3>Deliver</h3><p>Exports sized for every platform you post on, ready to upload.</p></div></li>
+        </ol>
+      </div>
+      <div class="suite">
+        <div class="process__stage"><div class="stage" data-pose="editing" data-blob="mustard" style="position:absolute;inset:0"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="voices" data-sec>
+    <div class="wrap">
+      <p class="eyebrow">Kind words</p>
+      <h2 class="rv"><span class="ln"><span>What clients <em>say</em></span></span></h2>
+      <div class="qwrap">
+        <button class="qnav" type="button" id="qPrev" aria-label="Previous testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <div class="quotes" id="quotes" tabindex="0" aria-label="Client testimonials">
+          <figure class="q"><blockquote>&ldquo;Tired of editors putting 500 spin transitions and generic trap beats over BTS clips. Your pacing felt raw, organic, and actually let the candid energy breathe. Exactly the aesthetic we wanted for the brand.&rdquo;</blockquote><footer>Nikhil T.<span>Performance Marketer, Zepto Marketplace Private Limited</span></footer></figure>
+          <figure class="q"><blockquote>&ldquo;Hi Arbab, that last batch of reels went crazy, The first one just blew past 250K views, and the client average watch time doubled. You just understand how to hook people and pace a lift to hit hard. Pulling numbers like that organically on a first draft is insane bro, looking forward to work with you more buddy&rdquo;</blockquote><footer>Durvesh Langde<span>Founder, Markmax Studioz PVT. LTD.</span></footer></figure>
+          <figure class="q"><blockquote>&ldquo;Bro, honestly loved working with you! The turnaround was insanely fast and the edits came out so clean. You just got the vibe right away without me even having to explain much. The storytelling and pacing are crazy good. Keep killing it man&rdquo;</blockquote><footer>Debadutta Chandan Dash<span>Founder &amp; Director, SPYRIOT SECURITY PVT. LTD.</span></footer></figure>
+          <figure class="q"><blockquote>&ldquo;Man, that luxury villa tour hit 1M+ views in literally two days, The pacing and speed ramp was insane. In Dubai, making properties look genuinely high-end is everything, and you nailed the aesthetic. Let's definitely lock in the next batch of listings this week&rdquo;</blockquote><footer>Tariq Al-Hashemi<span>Social Media Manager, Emaar Properties LLC, Dubai</span></footer></figure>
+          <figure class="q"><blockquote>&ldquo;Super easy to work with you, you takes feedback like a champ, and always brings creative ideas to the table instead of just waiting to be told what to do.&rdquo;</blockquote><footer>Zack W.<span>Video Producer &amp; Director, Canada</span></footer></figure>
+          <figure class="q"><blockquote>&ldquo;Finding someone who understands deadlines AND good taste is basically impossible. You nailed both. Seriously appreciate the extra hustle on this last batch.&rdquo;</blockquote><footer>Rounak R. Choudhury<span>Managing Director, Griebs Properties LLC, Dubai</span></footer></figure>
+        </div>
+        <button class="qnav" type="button" id="qNext" aria-label="Next testimonial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <p class="qcount" id="qCount" aria-live="polite"></p>
+      <div class="clients" aria-label="Brands I have edited for"><b>Edited for</b><div class="lrow"><div class="ltrack" id="logos1"></div></div><div class="lrow rev"><div class="ltrack" id="logos2"></div></div></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" data-sec>
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Let's work together</p>
+        <h2 class="rv"><span class="ln"><span>Have a project</span></span><span class="ln"><span><em>in mind?</em></span></span></h2>
+        <p class="lede" style="margin-top:18px">Tell me what you're making and when it's due. I reply within a day.</p>
+        <form id="form" novalidate>
+          <input type="hidden" name="_subject" value="New project enquiry: MAS Pixels website"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+          <div class="f"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="f"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="f full"><span style="font:700 11px/14px var(--sans);letter-spacing:1.2px;text-transform:uppercase">Project type</span>
+            <div class="types" role="group" aria-label="Project type">
+              <input type="radio" name="type" id="t1" value="Commercial / brand" checked><label for="t1">Commercial / brand</label>
+              <input type="radio" name="type" id="t2" value="Short-form social"><label for="t2">Short-form</label>
+              <input type="radio" name="type" id="t3" value="YouTube / documentary"><label for="t3">YouTube / docs</label>
+              <input type="radio" name="type" id="t4" value="Music / cinematic"><label for="t4">Music / cinematic</label>
+            </div>
+          </div>
+          <div class="f"><label for="f-budget">Budget</label><select id="f-budget" name="budget"><option>Under ₹10,000</option><option>₹10,000 – ₹25,000</option><option>₹25,000 – ₹50,000</option><option>₹50,000+</option><option>Not sure yet</option></select></div>
+          <div class="f"><label for="f-date">Deadline</label><input id="f-date" name="deadline" type="date"></div>
+          <div class="f full"><label for="f-msg">About the project</label><textarea id="f-msg" name="message" placeholder="What's the video for, how long is it, and where will it be posted?"></textarea></div>
+          <div class="f full"><p class="err" id="err" role="alert"></p><div><button class="btn btn--dark" type="submit">Start a project <span class="arr">↗</span></button></div></div>
+          <div class="sent" id="sent" hidden>
+            <p><b>Couldn't send from here.</b> Open it in your email app instead, or copy it and email me:</p>
+            <div class="mail"><code id="addr">maspixelscontents@gmail.com</code><a class="btn btn--dark" id="mailMsg" href="mailto:maspixelscontents@gmail.com">Open email app</a><button class="btn" type="button" id="copyMsg">Copy message</button><button class="btn btn--ghost" type="button" id="copyAddr">Copy email</button></div>
+          </div>
+        </form>
+      </div>
+      <div class="contact__side">
+        <div class="contact__stage"><div class="stage" data-pose="phone" data-blob="flame" style="position:absolute;inset:1% 7% 6% 7%"></div></div>
+        <div class="direct"><div><span>Email me directly</span><br><b>maspixelscontents@gmail.com</b></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site night">
+  <div class="wrap">
+    <div class="foot">
+      <div><a class="brand brand--logo brand--foot" href="#top" aria-label="MAS Pixels, back to top"><img src="brand-logo-cream.webp" alt="MAS Pixels — Md Arbab Sarin" width="600" height="366"><svg aria-hidden="true"><use href="#burst"/></svg></a><p>Video editing by Md Arbab Sarin, for brands, businesses and creators.</p></div>
+      <div><h4>Explore</h4><ul><li><a href="#about">About</a></li><li><a href="#services">Services</a></li><li><a href="#work">Projects</a></li><li><a href="#process">Process</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="#contact">Start a project</a></li><li><span style="color:var(--night-muted)">maspixelscontents@gmail.com</span></li></ul>
+        <div class="socials"><a href="https://www.instagram.com/mas.pixels" target="_blank" rel="noopener" aria-label="MAS Pixels on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.linkedin.com/in/md-arbab-sarin-75567b214" target="_blank" rel="noopener" aria-label="Md Arbab Sarin on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v6.35h-4v-5.63c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.73h-4z"/></svg></a></div></div>
+    </div>
+    <div class="legal"><span>© 2026 MAS Pixels · Md Arbab Sarin</span><span>Edited frame by frame.</span></div>
+  </div>
+</footer>
+
+<div id="mas" aria-hidden="true">
+  <div class="bob">
+    <div class="disc"></div>
+    <div class="pop">
+    <img src="poses-thumbsup.webp" data-p="thumbsup" alt="" fetchpriority="high" decoding="async">
+    <img src="poses-clap.webp" data-p="clap" alt="" decoding="async">
+    <img src="poses-tablet.webp" data-p="tablet" alt="" decoding="async">
+    <img src="poses-thinking.webp" data-p="thinking" alt="" decoding="async">
+    <img src="poses-editing.webp" data-p="editing" alt="" decoding="async">
+    <img src="poses-phone.webp" data-p="phone" alt="" decoding="async">
+    </div>
+  </div>
+</div>
+<div id="cur" aria-hidden="true"><div style="display:grid;place-items:center"><svg><use href="#play"/></svg>PLAY</div></div>
+<div id="lb" class="lb" hidden role="dialog" aria-modal="true" aria-label="Video player"></div>
+
+<script>
+/* ============ EDIT YOUR CONTENT HERE ============
+   VIDEOS: up to 50. Paste a YouTube or Vimeo link into `url`.
+   genre: "commercial" | "music" | "short" | "youtube"
+   ratio: "16:9" | "9:16" | "2.39:1"                                   */
+const CONFIG = {
+  email: "maspixelscontents@gmail.com",
+  formEndpoint: "https://formsubmit.co/ajax/maspixelscontents@gmail.com",  // FormSubmit: confirm the activation email once
+  retention: 90,             // % of clients who come back
+  perPage: 6
+};
+/* CLIENT LOGOS: add brands you have actually edited for. Put the logo file (SVG or PNG,
+   transparent background) next to this page, e.g. "logos-brand.svg", and set src.
+   With no src, the name is shown as text. Half go in the top row, half in the bottom. */
+const LOGOS = [
+  {"name": "Plot Twist", "src": "logos-01.webp", "bg": "night", "ar": 1.825},
+  {"name": "Laiza", "src": "logos-02.webp", "bg": "night", "ar": 4.045},
+  {"name": "The Traitors", "src": "logos-03.webp", "bg": "cream", "ar": 3.318},
+  {"name": "All About Fitness", "src": "logos-04.webp", "bg": "night", "ar": 3.273},
+  {"name": "RenoMate", "src": "logos-05.webp", "bg": "cream", "ar": 3.789},
+  {"name": "Deadline Day Films", "src": "logos-06.webp", "bg": "#000000", "ar": 2.365},
+  {"name": "Havells", "src": "logos-07.webp", "bg": "cream", "ar": 1.51},
+  {"name": "Markmax Studioz", "src": "logos-08.webp", "bg": "cream", "ar": 3.333},
+  {"name": "One Hand Clap Media", "src": "logos-09.webp", "bg": "cream", "ar": 3.0},
+  {"name": "Power Factory", "src": "logos-10.webp", "bg": "#ffffff", "ar": 1.031},
+  {"name": "Prasad Bhamburdekar Jewellers", "src": "logos-11.webp", "bg": "#3a0f3d", "ar": 0.875},
+  {"name": "Pyroflex", "src": "logos-12.webp", "bg": "cream", "ar": 1.007},
+  {"name": "Rntout", "src": "logos-13.webp", "bg": "cream", "ar": 3.77},
+  {"name": "Discourse", "src": "logos-14.webp", "bg": "#ffffff", "ar": 2.903},
+  {"name": "Little Bean Cafe", "src": "logos-15.webp", "bg": "#fffdfe", "ar": 1.015},
+  {"name": "Tata AIG", "src": "logos-16.webp", "bg": "cream", "ar": 1.056},
+  {"name": "VGrow", "src": "logos-17.webp", "bg": "cream", "ar": 6.928},
+  {"name": "Byte Solutions", "src": "logos-18.webp", "bg": "#f3f2ee", "ar": 1.83},
+  {"name": "Happy Monk", "src": "logos-19.webp", "bg": "#f7f7f7", "ar": 0.747},
+  {"name": "Edelweiss Mutual Fund", "src": "logos-20.webp", "bg": "#ffffff", "ar": 5.07},
+  {"name": "LegAn The Faith", "src": "logos-21.webp", "bg": "cream", "ar": 2.286},
+  {"name": "Glitchez", "src": "logos-22.webp", "bg": "cream", "ar": 4.528},
+  {"name": "Zepto", "src": "logos-23.webp", "bg": "cream", "ar": 3.064},
+  {"name": "Brigade", "src": "logos-24.webp", "bg": "night", "ar": 0.873},
+  {"name": "Infanite", "src": "logos-25.webp", "bg": "cream", "ar": 4.311},
+  {"name": "BGMI", "src": "logos-26.webp", "bg": "#000000", "ar": 1.358}
+];
+const GENRES = {commercial:"Commercial", international:"International", realestate:"Real-estate", music:"Music & Cinematic", short:"Short-form", docmotion:"Documentary & Motion", youtube:"YouTube & Docs"};
+const SAMPLE = {
+  commercial:["Product launch spot","Brand story film","Festive sale ad","Restaurant promo","Real-estate walkthrough","App explainer","Fashion lookbook","Fitness studio ad","Jewellery campaign","Corporate profile","Skincare launch","Café opening teaser","Event aftermovie","Automobile showcase"],
+  music:["Indie music video","Lyric video","Short film trailer","Dance performance","Cinematic travel film","Album teaser","Live session cut","Monsoon mood film","Rap video","Fashion film"],
+  short:["Hook-first reel","Founder talking head","UGC product ad","Before/after reel","Podcast clip","Recipe reel","Meme-format ad","Tutorial short","Trend remix","Behind the scenes","Testimonial reel","Unboxing short","Day-in-the-life","Tips carousel reel","Launch countdown","Myth vs fact"],
+  youtube:["Tech review episode","Travel vlog","Podcast full episode","Mini documentary","Explainer essay","Gaming highlights","Interview feature","Channel trailer","Case-study doc","Challenge video"]
+};
+const VIDEOS = [];
+Object.entries(SAMPLE).forEach(([g,list])=>list.forEach((t,i)=>VIDEOS.push({
+  title:t, genre:g, url:"",
+  ratio: g==="short" ? "9:16" : (g==="music" && i%3===0 ? "2.39:1" : "16:9"),
+  dur: g==="short" ? `0:${String(15+(i*7)%45).padStart(2,"0")}` : g==="youtube" ? `${8+(i*3)%17}:${String((i*13)%60).padStart(2,"0")}` : `${i%2}:${String(20+(i*11)%40).padStart(2,"0")}`
+})));
+/* interleave genres so "All" looks varied */
+VIDEOS.sort((a,b)=>(SAMPLE[a.genre].indexOf(a.title)-SAMPLE[b.genre].indexOf(b.title)) || a.genre.localeCompare(b.genre));
+/* YOUR VIDEOS: each one replaces the next sample card, in order (1st card, 2nd card …).
+   url: a YouTube, Vimeo or Google Drive link ("Anyone with the link" access).
+   thumb (optional): an image file next to this page, e.g. "thumbs/bgmi.jpg". */
+const MY_VIDEOS = [
+  {title:"BGMI", genre:"commercial", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/18aX2LZhNWRaJeR51YvSKj8aT7kZzYYFs/view?usp=drive_link"},
+  {title:"Havells", genre:"commercial", ratio:"16:9", drivethumb:false, dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1TSptaP4f_779JJL4roW-m-F_vinLNuiP/view?usp=drive_link"},
+  {title:"The Traitors", genre:"commercial", word:"Traitors", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1ULsYG59GFm5T5SL6EOHdr7pHLJcKrgU-/view?usp=drive_link"},
+  {title:"Pyroflex Gym", genre:"music", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1tr0w6HY5JKvQBEN61zdP_1kvJjOR22r-/view?usp=drive_link"},
+  {title:"Power Factory Gym", genre:"music", word:"Power", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1YMNVf5YmMOhMief4EsYfz_VZNybW5uiz/view?usp=drive_link"},
+  {title:"All About Fitness", genre:"short", word:"Fitness", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1X8mm18JtiVsKYb2Mwzx1OwH74s0iP5Ez/view?usp=drive_link"},
+  {title:"Educational Podcast", genre:"international", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1sjO5JGDwrvrDzey7eKN8CPNfHV72fyTe/view"},
+  {title:"Paulson Velly", genre:"international", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1YDT8vbQ3ADS0Tff6hcE2Q7oXhc5yW5RV/view"},
+  {title:"Business", genre:"international", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1MtdqwlexOCI3A7wRkoDZp29xjBb_Z5jC/view"},
+  {title:"Abu Dabi", genre:"international", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/16OOO259TCBcw2YNoCFWHEcbxp8W1ydwW/view"},
+  {title:"Renewables", genre:"international", ratio:"16:9", drivethumb:false, dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1HYVYmqDiGth9L1nj19q6XiVrkr75uCMx/view"},
+  {title:"Trading", genre:"international", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1QHtIMed_oimpQd7BmXI3JeSDw-udp-Wz/view"},
+  {title:"Realestate Walkthrough", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1JD8TZ7pIUhHhWpmNoj8cJYX2Vx-xXMVw/view"},
+  {title:"MarkMax Showreel", genre:"commercial", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1ETXhZ4NwCojCYsJmMf0kdmct-lyf5lwH/view"},
+  {title:"Third Floor Films", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1Xk-u0ZaP05lzUX_fvHmfZU9KSSnQcqBS/view"},
+  {title:"TATA AIGI", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1-QrB9CxDqhNaJDlMOxb7ZjAvS5eq-lF_/view"},
+  {title:"DDF x Zepto", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1cLjzDQ8NdqspVBR3FwiuCD8g0ClCILgD/view"},
+  {title:"Discourse", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1IqfKJfIXva--kzhJPPxZRled2KwnC5U1/view"},
+  {title:"Property Doctor", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1PnkpN0IWbhlBMPVUikPXWoYLFDMZdhWS/view"},
+  {title:"JMG", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1cMsF6HfMq5USHvKK4OyyDwaTtCR3vnry/view"},
+  {title:"Dubai Education Sector", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1tha5PW5LDcU1ep4P4u2ml4s1s1VSAir2/view"},
+  {title:"Griebs Properties", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1o_lXFEZIT-7DgLcmhZgaEwzi7D3Ka9pz/view"},
+  {title:"Sky Line Walk Through", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1VRAKofl_PLuhXnmwXP5F3hEcLwzkJBO_/view"},
+  {title:"Morya Skydale", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1P627rWf3m5vSNrCPMwgL83IY556t63YM/view"},
+  {title:"Dubai Plans", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1o9SiTisRSlOjxJhnzzhbnN-e3c3RFhml/view"},
+  {title:"WDC Properties", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1fakv1SuBXaVFyjFK441bdUoWnlxdd7Mk/view"},
+  {title:"Brand Entertainment", genre:"international", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1WMJZaj1Pc7KbLuulSwua1gwqh3yQAWz7/view"},
+  {title:"CCC", genre:"international", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1wJDRqJYvR9FiiZhDLPvYrpwkwxNNS_jg/view"},
+  {title:"DFW", genre:"international", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/16nHbJotJ3FOujoP8kTQaZTvBUCX6ULAi/view"},
+  {title:"Labour Day", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1-6NktpK-NygCVCzviPEb_Ybo4N5Kgh5T/view"},
+  {title:"Cinematic Sunflower", genre:"music", ratio:"2:1", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1qXDj7mmSwETzKYDeCWoJwmpEWTheSvfp/view"},
+  {title:"DYKE akela watersports promotion", genre:"music", ratio:"2:1", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1N3tYPbCed4L33dh-epkummvDVynFE6_A/view"},
+  {title:"Women Dedicated", genre:"music", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/11AkIpBCakizdChYCb0aQn3AqURSYzNr-/view"},
+  {title:"Duo Male Dedicated", genre:"music", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1vbQnO7_3si4GMcqBY1glT5hWu0HzcXpf/view"},
+  {title:"Dedicated Women", genre:"music", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1dZhkwAkGn_AkIKz4MM0mQ-0m8DDq0owe/view"},
+  {title:"Dedicated Male", genre:"music", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1VF9tcP9Uz4JZBjqI4I5vK89QFCuM7eCu/view"},
+  {title:"Sivaji Jayanti Final", genre:"music", ratio:"9:16", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1uv2OaiyPnDB7R6I0kPHA2pKAvub6Mzwy/view"},
+  {title:"Dedicated Male", genre:"music", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/153ZaJLPdMtZhEWZybkYl_OgSFZbfZ4Wu/view"},
+  {title:"Little Bean AI Trend", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1yHiBUTbNapd7-KxNxQV1P3vepC-_PBkD/view"},
+  {title:"Trainers Introduction", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/15VPqtNN4yQpVNPTmYMTVibsWn4GDlWaK/view"},
+  {title:"Pyroflex x Crossfit", genre:"short", ratio:"9:16", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/14cvDoi-8m3mnPZKDkNJQnxmujMvPTWJ1/view"},
+  {title:"ComicCon India", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1xoVoie57i6tdH6jtkrKx3QKERfCow198/view"},
+  {title:"Testimonial01 Sikandar", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1SZhMY6oMaRgp9ZP6r0Z3Pbzd0q2l8g7Y/view"},
+  {title:"Male Female Montage", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1Se-_ua3OJSLWJiHgXtHj9_-Hx21mqzFu/view"},
+  {title:"Zumba", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/11QknT6cDX5R-53MbZMakNe84BW0GlNg0/view"},
+  {title:"Trending Women Montage", genre:"short", ratio:"9:16", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/10dM4tMq1WvQhVroVKEe_C57FM7O-hZ0N/view"},
+  {title:"CGI PBJ", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1IsSOcg1fXomdeesmfWGpJRwWrJrNd89w/view"},
+  {title:"Logo Reveal", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1BM7QwZtO-fgUDRQURcDxSMJsXoO6mnjt/view"},
+  {title:"Markmax Services", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1mKoM4mpqUGCbq1sBMTV6MnN4A4CXJ_02/view"},
+  {title:"AI Usage", genre:"short", ratio:"4:3", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1DP_6vTnrRTjrwY0l69DJuTFH08MJEHOA/view"},
+  {title:"Information", genre:"short", ratio:"9:16", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1sZPY9EoHRAcR0AAmiAcDA3TlVEKZuP9j/view"},
+  {title:"Markmax Introduction", genre:"short", ratio:"9:16", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/18Ll1fZ0qKbOjnN67-c8GzXkwdUNH8Rap/view"},
+  {title:"Little Bean Cafe Walk Through", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1b6o0eF3eVr7OLl7bCw0Y0fBDqKp7Y5h-/view"},
+  {title:"3 BURGERS", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1xHNiVhMJfij2P3RdTOkLo4akTrbvCIgJ/view"},
+  {title:"Shruti Ma'am Janki Devi", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1uVeha9pe2pxFJGNHKLY61fDREcO8NLMS/view"},
+  {title:"Dept of food production", genre:"short", ratio:"9:16", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1x5Em-9YoJ1YtCf-aiWcFd84w6FSoaJ_E/view"},
+  {title:"Dept of Food & Beverages", genre:"short", ratio:"9:16", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1CLwCg2dlzlJgxxOt-51tIDOWdXGBBjnS/view"},
+  {title:"Signature Drinks", genre:"short", ratio:"9:16", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/137SL4K1Qb1siWlFLKZ92BbBshkKi20PE/view"},
+  {title:"Unveiling the Art of Documentary", genre:"docmotion", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1H5SjoVj7mOd4UJN25mFsXEiLOtMpGYiB/view"},
+  {title:"Women Day", genre:"docmotion", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1gsad5CE6RRsbjChhKdV2jXmxeERJFYfg/view"},
+  {title:"Autoimmune", genre:"docmotion", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1XlmXm-L_fqUMT4wnd0hYx1JbeqJhj1gu/view"},
+  {title:"Interview Guard", genre:"docmotion", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1rt2PnGjxy8CLO46igP88bOn4UgN_JVH1/view"},
+  {title:"Chat GPT", genre:"docmotion", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1XGFwhDvTkLAQcaDoRJac1EYx5JWk_XW0/view"},
+  {title:"Obvix Lab", genre:"docmotion", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1dS7AYBJ1kCsdpi-5oDCCAjOdbN32S3Vn/view"},
+  {title:"Gemini", genre:"docmotion", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+   url:"https://drive.google.com/file/d/1NntVo-OvrUgTxKfTh6DWIy_o2ZpLc1u5/view"}
+];
+MY_VIDEOS.forEach((v,i)=>{VIDEOS[i]=v});
+/* Commercial shows only real videos: drop the sample Commercial cards that have no link */
+for(let i=VIDEOS.length-1;i>=0;i--){if(VIDEOS[i].genre==="commercial"&&!VIDEOS[i].url)VIDEOS.splice(i,1)}
+/* ================================================= */
+
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.getElementById("retention").textContent=CONFIG.retention;
+document.getElementById("retention").dataset.to=CONFIG.retention;
+
+/* ---- reveals & counters ---- */
+if("IntersectionObserver" in window && !reduce){
+  /* stats count up from 0 every time the About section scrolls into view */
+  const nums=$$("#stats [data-to]");
+  const show=(el,v,done)=>{el.textContent=el.hasAttribute("data-views")?(done?"1 Cr":v+" L"):v};
+  let runId=0;
+  function countUp(){
+    const id=++runId, t0=performance.now();
+    nums.forEach((el,i)=>{
+      const to=+el.dataset.to, delay=i*120, dur=1800, b=el.parentElement;
+      b.classList.remove("hit");
+      const f=n=>{if(id!==runId)return;
+        const p=Math.min(1,Math.max(0,(n-t0-delay)/dur)), e=1-Math.pow(1-p,4);
+        show(el,Math.round(to*e),p>=1);
+        if(p<1)requestAnimationFrame(f);else b.classList.add("hit")};
+      requestAnimationFrame(f)});
+  }
+  const so=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting)countUp();
+    else{runId++;nums.forEach(el=>show(el,0,false))}   // reset so it counts again next time
+  }),{threshold:.35});
+  so.observe($("#stats"));
+}
+
+/* ---- client logo loops ---- */
+(function(){
+  // logos keep their own proportions and colours; tile ground matches the logo (dark for white logos, the logo's own backdrop for flat images)
+  const tile=l=>{
+    if(!l.src)return `<div class="logo"><span>${l.name}</span></div>`;
+    const flat=l.bg&&l.bg[0]==="#", h=flat?(l.ar>2.2?56:70):(l.ar>2.2?40:l.ar>1.2?52:62);
+    const style=flat?`background:${l.bg}`:(l.bg==="night"?"background:var(--night)":"");
+    return `<div class="logo${flat?" flat":""}" title="${l.name}" style="${style}"><img src="${l.src}" alt="${l.name}" style="height:${h}px;width:auto" loading="lazy"></div>`};
+  const half=Math.ceil(LOGOS.length/2), rows=[LOGOS.slice(0,half),LOGOS.slice(half)];
+  ["logos1","logos2"].forEach((id,i)=>{let r=rows[i].length?rows[i]:LOGOS;
+    while(r.length<6)r=r.concat(r);                       // enough tiles to fill wide screens
+    const html=r.map(tile).join(""); document.getElementById(id).innerHTML=html+html.replace(/<div class="logo/g,'<div aria-hidden="true" class="logo')});
+})();
+
+/* ---- testimonial slider ---- */
+(function(){
+  const box=$("#quotes"), prev=$("#qPrev"), next=$("#qNext"), cnt=$("#qCount"), cards=[...box.children];
+  const pos=i=>cards[i].offsetLeft-cards[0].offsetLeft;
+  const perView=()=>{const w=cards[0].offsetWidth, g=parseFloat(getComputedStyle(box).columnGap)||0;return Math.max(1,Math.floor((box.clientWidth+g+2)/(w+g)))};
+  const current=()=>{let best=0;cards.forEach((c,i)=>{if(Math.abs(pos(i)-box.scrollLeft)<Math.abs(pos(best)-box.scrollLeft))best=i});return best};
+  const lastStart=()=>Math.max(0,cards.length-perView());
+  function go(i){box.scrollTo({left:pos(Math.max(0,Math.min(lastStart(),i)))})}
+  function upd(){
+    const i=current(), per=perView();
+    prev.disabled=i<=0; next.disabled=i>=lastStart();
+    const last=Math.min(cards.length,i+per);
+    cnt.textContent=(per>1?`${i+1}–${last}`:i+1)+" / "+cards.length;
+  }
+  prev.onclick=()=>go(current()-1);
+  next.onclick=()=>go(current()+1);
+  let t;box.addEventListener("scroll",()=>{cancelAnimationFrame(t);t=requestAnimationFrame(upd)},{passive:true});
+  box.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();next.click()}if(e.key==="ArrowLeft"){e.preventDefault();prev.click()}});
+  addEventListener("resize",upd); upd();
+})();
+
+/* ---- thumbnails ---- */
+const PAL={commercial:[["#f2b61f","#e8491d"],["#f4ede1","#f2b61f"],["#e8491d","#141210"]],music:[["#141210","#e8491d"],["#2a1d3a","#e8491d"],["#141210","#f2b61f"]],short:[["#e8491d","#f2b61f"],["#f2b61f","#f4ede1"],["#141210","#e8491d"]],youtube:[["#eadfcb","#e8491d"],["#141210","#5e554b"],["#f2b61f","#141210"]],international:[["#141210","#f2b61f"],["#f2b61f","#e8491d"],["#eadfcb","#141210"]],realestate:[["#eadfcb","#e8491d"],["#141210","#f2b61f"],["#f2b61f","#141210"]],docmotion:[["#141210","#e8491d"],["#eadfcb","#141210"],["#f2b61f","#141210"]]};
+const tc=i=>`00:${String(i%60).padStart(2,"0")}:${String((i*17)%60).padStart(2,"0")}:${String((i*7)%24).padStart(2,"0")}`;
+function thumb(v,i){
+  if(v.thumb)return `<div class="thumb"><img src="${v.thumb}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>`;
+  const [a,b]=PAL[v.genre][i%3], ang=[135,200,60,160][i%4];
+  const dark=["#141210","#2a1d3a","#e8491d"].includes(a) && b!=="#f4ede1";
+  const word=v.title, longest=Math.max(...word.split(/\s+/).map(w=>w.length),1);
+  const bars=v.ratio==="2.39:1"?'<i class="bar" style="top:0"></i><i class="bar" style="bottom:0"></i>':"";
+  // Drive videos: try the video's own Drive thumbnail on top; if it can't load (e.g. in the preview), the graphic stays
+  const did=(v.url||"").match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]{10,})/);
+  const real=did&&v.drivethumb!==false?`<img class="real" src="https://drive.google.com/thumbnail?id=${did[1]}&sz=w800" alt="" loading="lazy" referrerpolicy="no-referrer" onload="fitThumb(this)" onerror="this.remove()">`:"";
+  return `<div class="thumb" style="background:linear-gradient(${ang}deg,${a} 0 48%,${b} 48% 100%)">${real}
+    <span class="big" style="font-size:min(clamp(30px,4.6vw,68px),calc(110cqw / ${longest}),calc(${word.split(/\s+/).length>3?70:90}cqh / ${Math.min(word.split(/\s+/).length,4)}));color:${dark?"#f4ede1":"#15120f"};mix-blend-mode:${dark?"normal":"multiply"}">${word}</span>${bars}</div>`;
+}
+const ar=r=>r==="9:16"?"9/16":r==="2.39:1"?"2.39/1":r==="2:1"?"2/1":r==="4:3"?"4/3":"16/9";
+/* when a video's real thumbnail loads, reshape its card to match: tall for 9:16 reels, wide for 16:9 */
+function fitThumb(img){
+  img.classList.add("ok");
+  const w=img.naturalWidth,h=img.naturalHeight,f=img.closest(".frame");if(!f||!w||!h)return;
+  const r=w/h,rat=r<0.8?"9:16":r>2?"2.39:1":"16:9";/* card shape is set by the collage layout; only the pop-up player follows the real ratio */
+  const c=img.closest(".card");if(c&&VIDEOS[+c.dataset.i])VIDEOS[+c.dataset.i].ratio=rat;   // pop-up player matches too
+}
+
+/* ---- work grid ---- */
+let filter="all", shown=0;
+/* every category is mixed into an "unorganised" collage: in each set of 6, two long (portrait) cards and four short (landscape)
+   cards, placed so the two columns zig-zag. Order is shuffled once per visit. */
+const isTall=v=>v.ratio==="9:16";
+const SHUF=new Map(VIDEOS.map(v=>[v,Math.random()])), SLOT=new Map();
+/* card shape: 9:16 reels stay 9:16; landscape videos are square in long slots and 16:9 in short slots */
+const shape=v=>isTall(v)?"9/16":(SLOT.get(v)==="T"?"1/1":SLOT.get(v)==="W2"?"12/5":"16/9");   // reels always keep their 9:16 shape
+function collage(L){
+  const by=a=>a.sort((x,y)=>SHUF.get(x)-SHUF.get(y));
+  const T=by(L.filter(isTall)), W=by(L.filter(v=>!isTall(v))), out=[];
+  const PAT=[["T","W","W","W","W","T"],["W","T","W","W","T","W"]];
+  for(let b=0;T.length||W.length;b++){
+    for(const k of PAT[b%2]){const src=k==="T"?(T.length?T:W):(W.length?W:T);if(src.length){const v=src.shift();SLOT.set(v,k);out.push(v)}}
+  }
+  return out;
+}
+const list=()=>collage(VIDEOS.filter(v=>filter==="all"||v.genre===filter));
+function renderFilters(){
+  const counts={all:VIDEOS.length};VIDEOS.forEach(v=>counts[v.genre]=(counts[v.genre]||0)+1);
+  $("#filters").innerHTML=[["all","All"],...Object.entries(GENRES).filter(([k])=>counts[k])].map(([k,l])=>
+    `<button class="chip" type="button" data-f="${k}" aria-pressed="${k===filter}">${l} <span class="n">${counts[k]||0}</span></button>`).join("");
+}
+function pageSize(){return gridCols()*3}
+function gridCols(){const w=$("#grid").clientWidth||innerWidth;return w>=940?3:w>=560?2:1}
+addEventListener("resize",()=>{if(+$("#grid").dataset.cols!==gridCols())renderGrid()});
+/* Grid: every category is sized like Documentary & Motion. Each column in a block is either
+   S = 1 square + 2 wide cards, or R = one 9:16 reel + 1 wide card (both about the same height).
+   One R column per block (diagonal); reel-heavy categories fall back to R columns, so they show fewer cards
+   per block; a reel with no wide card left stands alone. Then "Load more" adds the next block. */
+function renderGrid(){
+  const n=gridCols(), L=list();
+  const T=L.filter(isTall), W=L.filter(v=>!isTall(v));
+  const blocks=Math.max(1,Math.ceil(shown/(n*3))), cols=Array.from({length:n},()=>[]);
+  let used=0;
+  const take=(arr,slot)=>{const v=arr.shift();if(v){SLOT.set(v,slot);used++}return v};
+  for(let bk=0;bk<blocks&&(T.length||W.length);bk++){
+    for(let k=0;k<n;k++){
+      let type=(n===1?bk%2===1:(k+bk)%3===0)?"R":"S";
+      if(type==="S"&&W.length<3&&T.length)type="R";
+      if(type==="R"&&!T.length)type="S";
+      const col=[];
+      if(type==="R"){col.push(take(T,"T"));if(W.length)col.push(take(W,"W2"));if((k+bk)%2)col.reverse()}
+      else{const sq=take(W,"T"),w1=take(W,"W"),w2=take(W,"W");const pos=(k+bk)%3;const rest=[w1,w2];rest.splice(pos,0,sq);col.push(...rest)}
+      cols[k].push(...col.filter(Boolean));
+    }
+  }
+  shown=blocks*n*3;
+  const card=(v,i)=>{const idx=VIDEOS.indexOf(v);return `
+    <button class="card" type="button" data-i="${idx}" style="animation-delay:${(i%9)*35}ms" aria-label="Play ${v.title}">
+      <div class="frame${isTall(v)?" tall":""}" style="aspect-ratio:${shape(v)}">${thumb(v,idx)}<span class="tag">${GENRES[v.genre]}</span><span class="tcode">${tc(idx+3)}</span></div>
+      <div class="meta"><b>${v.title}</b><small>${v.dur||""}</small></div>
+    </button>`};
+  $("#grid").innerHTML=cols.map(c=>`<div class="gcol">${c.map(card).join("")}</div>`).join("");
+  $("#grid").dataset.cols=n;
+  const left=L.length-used;
+  $("#moreBtn").hidden=left<=0;
+  $("#moreBtn").innerHTML=`Load more (${left}) <span class="arr">↓</span>`;
+}
+$("#filters").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;filter=b.dataset.f;shown=pageSize();renderFilters();renderGrid()});
+$("#moreBtn").addEventListener("click",()=>{shown+=gridCols()*3;renderGrid()});
+$("#grid").addEventListener("click",e=>{const c=e.target.closest(".card");if(c)openVideo(VIDEOS[+c.dataset.i])});
+shown=pageSize();renderFilters();renderGrid();
+
+/* ---- lightbox ---- */
+const lb=$("#lb");let lastFocus=null;
+function embed(u){
+  let m=u.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/);if(m)return `https://www.youtube.com/embed/${m[1]}?autoplay=1&rel=0`;
+  m=u.match(/vimeo\.com\/(?:video\/)?(\d+)/);if(m)return `https://player.vimeo.com/video/${m[1]}?autoplay=1`;
+  m=u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]{10,})/);if(m)return `https://drive.google.com/file/d/${m[1]}/preview`;return "";
+}
+function openVideo(v,isReel){
+  lastFocus=document.activeElement;
+  const vert=v&&v.ratio==="9:16";
+  let media;
+  if(isReel) media=`<video controls autoplay playsinline poster="media-poster.jpg" controlslist="nodownload noremoteplayback noplaybackrate" disablepictureinpicture oncontextmenu="return false"><source src="media-showreel.mp4" type="video/mp4"></video>`;
+  else if(v.url && embed(v.url)) media=`<iframe src="${embed(v.url)}" allow="autoplay; fullscreen" allowfullscreen title="${v.title}"></iframe>${/drive\.google/.test(v.url)?'<span class="lb__shield" aria-hidden="true"></span>':""}`;
+  else media=`${thumb(v,VIDEOS.indexOf(v))}<div class="lb__ph"><p>This is a sample slot. Add the YouTube or Vimeo link for this video in the VIDEOS list and it will play here.</p></div>`;
+  lb.innerHTML=`<div class="lb__box ${vert?"v":""}">
+    <div class="lb__bar"><div><b>${isReel?"Showreel":v.title}</b><small>${isReel?"MAS Pixels · 0:34":GENRES[v.genre]+(v.dur?" · "+v.dur:"")}</small></div><button class="x" type="button" aria-label="Close player">✕</button></div>
+    <div class="lb__media" style="${!isReel&&v.ratio==="2.39:1"?"aspect-ratio:2.39/1":""}">${media}</div></div>`;
+  lb.hidden=false;document.body.style.overflow="hidden";lb.querySelector(".x").focus();cur.classList.remove("on");
+}
+function closeLb(){lb.hidden=true;lb.innerHTML="";document.body.style.overflow="";lastFocus&&lastFocus.focus()}
+lb.addEventListener("click",e=>{if(e.target===lb||e.target.closest(".x"))closeLb()});
+addEventListener("keydown",e=>{if(e.key==="Escape"&&!lb.hidden)closeLb()});
+$("#reelBtn").addEventListener("click",()=>openVideo(null,true));
+
+/* ---- play cursor ---- */
+const cur=$("#cur");
+if(matchMedia("(pointer:fine)").matches){
+  let cx=0,cy=0,tx=0,ty=0;
+  addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;cur.classList.toggle("on",!!e.target.closest(".card,.reel-btn")&&lb.hidden)});
+  (function loop(){cx+=(tx-cx)*.25;cy+=(ty-cy)*.25;cur.style.left=cx+"px";cur.style.top=cy+"px";requestAnimationFrame(loop)})();
+}
+
+/* ---- contact form ---- */
+$("#form").addEventListener("submit",async e=>{
+  e.preventDefault();const f=e.target, err=$("#err");err.textContent="";
+  const name=f.elements["name"].value.trim(), email=f.elements["email"].value.trim();
+  if(!name){err.textContent="Add your name so I know who to reply to.";f.elements["name"].focus();return}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){err.textContent="Enter an email address like you@example.com.";f.elements["email"].focus();return}
+  const data=Object.fromEntries(new FormData(f));
+  if(f.elements["_honey"].value)return;
+  const btn=f.querySelector('[type=submit]'),lbl=btn.innerHTML;
+  if(CONFIG.formEndpoint){
+    btn.disabled=true;btn.textContent="Sending…";
+    try{const r=await fetch(CONFIG.formEndpoint,{method:"POST",headers:{Accept:"application/json"},body:new FormData(f)});
+      const j=await r.json().catch(()=>({}));
+      if(r.ok&&String(j.success)==="true"){const s=$("#sent");s.innerHTML="<p><b>Message sent.</b> Thanks, "+name.replace(/[<>&]/g,"")+". I'll reply within a day.</p>";s.hidden=false;f.reset();btn.disabled=false;btn.innerHTML=lbl;s.scrollIntoView({block:"nearest",behavior:"smooth"});return}}catch(_){}
+    btn.disabled=false;btn.innerHTML=lbl;
+  }
+  window.__msg=`Hi Arbab,\n\nName: ${data.name}\nEmail: ${data.email}\nProject type: ${data.type}\nBudget: ${data.budget}\nDeadline: ${data.deadline||"—"}\n\n${data.message||""}`;
+  $("#mailMsg").href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Project enquiry from "+data.name)+"&body="+encodeURIComponent(window.__msg);
+  $("#sent").hidden=false;$("#sent").scrollIntoView({block:"nearest",behavior:"smooth"});
+});
+async function copy(text,btn){try{await navigator.clipboard.writeText(text);const o=btn.innerHTML;btn.textContent="Copied";setTimeout(()=>btn.innerHTML=o,1500)}catch(_){const r=document.createRange();r.selectNodeContents($("#addr"));getSelection().removeAllRanges();getSelection().addRange(r)}}
+$("#copyMsg").addEventListener("click",e=>copy(window.__msg||"",e.currentTarget));
+$("#copyAddr").addEventListener("click",e=>copy(CONFIG.email,e.currentTarget));
+
+/* ---- timecode ---- */
+const tcEl=$("#tc");
+function updTc(){if(!tcEl)return;const max=document.documentElement.scrollHeight-innerHeight||1,secs=scrollY/max*90,f=Math.floor((secs%1)*24);
+  tcEl.textContent=`00:${String(Math.floor(secs/60)).padStart(2,"0")}:${String(Math.floor(secs%60)).padStart(2,"0")}:${String(f).padStart(2,"0")}`}
+
+/* ---- the floating character ---- */
+const mas=$("#mas"), blob=mas.querySelector(".disc"), imgs=[...mas.querySelectorAll("img")];
+const stages=$$(".stage");
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t, ease=t=>t*t*(3-2*t);
+if(reduce){
+  mas.remove();
+  stages.forEach(s=>{s.innerHTML=`<div class="static-pose"><div class="ring"><div class="disc ${s.dataset.blob==="flame"?"flame":""}"></div><div class="pop"><img src="poses-${s.dataset.pose}.webp" data-p="${s.dataset.pose}" alt=""></div></div></div>`});
+}else{
+  let ticking=false;
+  function place(){
+    ticking=false;updTc();
+    const sy=scrollY, vh=innerHeight, vw=innerWidth;
+    const R=stages.map(s=>{const r=s.getBoundingClientRect(),d=Math.min(r.width*.92,r.height/1.3*.96);return{x:r.left+(r.width-d)/2,y:r.top+sy+(r.height-1.3*d)/2+.3*d,w:d,h:d,pose:s.dataset.pose,blob:s.dataset.blob}});
+    const C=R.map(r=>r.y+r.h/2-vh/2);
+    let k=0;while(k<R.length-2&&sy>C[k+1])k++;
+    const a=R[k], b=R[k+1];
+    const s=clamp((sy-C[k])/(C[k+1]-C[k]));
+    const e=ease(clamp((s-.3)/.55));                 // hold at a stage, then glide
+    const swing=Math.sin(Math.PI*e);
+    const side=((a.x+a.w/2)+(b.x+b.w/2))/2>vw/2?-1:1;  // arc toward the page centre
+    const w=lerp(a.w,b.w,e), h=lerp(a.h,b.h,e);
+    const small=vw<760;
+    // phones: while travelling, shrink and hug the right edge so text stays readable
+    let x=small?lerp(lerp(a.x,b.x,e),vw-8-w,swing):lerp(a.x,b.x,e)+swing*side*vw*.08;
+    const y=lerp(a.y,b.y,e)-sy;
+    const rot=swing*6*Math.sign((b.x-a.x)||1);
+    const sc=1-swing*(small?.55:.12);
+    mas.style.transformOrigin=small?"100% 50%":"50% 50%";
+    mas.style.width=w+"px";mas.style.height=h+"px";
+    mas.style.transform=`translate3d(${x}px,${y}px,0) rotate(${rot}deg) scale(${sc})`;
+    const f=clamp((e-.4)/.2);
+    imgs.forEach(im=>{const p=im.dataset.p;im.style.opacity=p===a.pose&&p===b.pose?1:p===a.pose?1-f:p===b.pose?f:0});
+    blob.classList.toggle("flame",(e<.5?a.blob:b.blob)==="flame");
+    mas.classList.add("ready");
+  }
+  const req=()=>{if(!ticking){ticking=true;requestAnimationFrame(place)}};
+  addEventListener("scroll",req,{passive:true});addEventListener("resize",req);addEventListener("load",req);
+  const ro=new ResizeObserver(req);ro.observe(document.body);stages.forEach(st=>ro.observe(st));   // re-centre whenever a section reflows
+  document.fonts&&document.fonts.ready.then(req);
+  req();
+}
+
+/* =====================================================================
+   PAGE ANIMATIONS: intro loader, mask-reveal text & buttons (in and out),
+   section colour wipes, parallax, scroll progress
+   ===================================================================== */
+(function(){
+  const root=document.documentElement, prog=$("#prog");
+  // scroll progress bar (runs even with reduced motion: it is information, not decoration)
+  const progUpd=()=>{const max=root.scrollHeight-innerHeight||1;prog.style.transform=`scaleX(${Math.min(1,scrollY/max)})`};
+  addEventListener("scroll",()=>requestAnimationFrame(progUpd),{passive:true});progUpd();
+  if(reduce||!("IntersectionObserver" in window))return;
+
+  /* 1. what animates: every text block and button, grouped by section for the stagger */
+  const SEL=[".eyebrow",".hero .who",".lede",".btn-row > *",".stat",".svc article",".steps li",".filters",".more",
+    ".qwrap",".qcount",".clients > b",".lrow",".work__head .scribble",".about .scribble","form .f",".direct",
+    ".foot > div",".legal > *",".peek"].join(",");
+  function tag(scope){
+    $$("[data-sec], footer.site").forEach(sec=>{
+      let i=0;sec.querySelectorAll(SEL).forEach(el=>{if(el.closest("#mas"))return;
+        el.classList.add("cut");el.style.setProperty("--d",Math.min(i++,8)*80+"ms")});
+    });
+  }
+  /* 2. reveal / hide as items cross the viewport; hiding direction follows the side they leave from */
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    const el=e.target;
+    if(e.isIntersecting){el.classList.remove("up");el.classList.add("in")}
+    else{el.classList.toggle("up",e.boundingClientRect.top<0);el.classList.remove("in")}
+  }),{threshold:0,rootMargin:"0px 0px -6% 0px"});
+  const watch=()=>$$(".cut, .rv").forEach(el=>{if(!el.dataset.w){el.dataset.w=1;io.observe(el)}});
+
+  /* 3. section wipes */
+  const COLORS={hero:"var(--mustard)",about:"var(--flame)",services:"var(--mustard)",work:"var(--night)",process:"var(--flame)",voices:"var(--mustard)",contact:"var(--night)"};
+  const wipes=$$("[data-sec]").map(sec=>{const w=document.createElement("span");w.className="swipe";w.setAttribute("aria-hidden","true");
+    const key=[...sec.classList].find(c=>COLORS[c]);w.style.background=COLORS[key]||"var(--flame)";sec.prepend(w);return w});
+  const wio=new IntersectionObserver(es=>es.forEach(e=>{
+    const w=e.target.querySelector(":scope > .swipe");if(!w||e.target.classList.contains("hero"))return;
+    if(e.isIntersecting&&e.boundingClientRect.top>0){w.classList.remove("go");void w.offsetWidth;w.classList.add("go")}
+  }),{threshold:0,rootMargin:"0px 0px -12% 0px"});
+
+  /* 4. parallax: decorations drift at their own speed */
+  const PAR=[[".hero__bg",.28],[".stamp",-.18],[".voices h2",-.06]];
+  const par=PAR.flatMap(([q,v])=>$$(q).map(el=>[el,v]));
+  const parUpd=()=>par.forEach(([el,v])=>{const r=el.parentElement.getBoundingClientRect();
+    const off=(r.top+r.height/2-innerHeight/2)*v;el.style.translate=`0 ${(-off).toFixed(1)}px`});
+  addEventListener("scroll",()=>requestAnimationFrame(parUpd),{passive:true});addEventListener("resize",parUpd);
+
+  /* 5. start everything; the work grid re-renders, so re-tag it after each render */
+  function start(){
+    root.classList.add("fx","rv-on");tag();watch();parUpd();
+    $$("[data-sec]").forEach(sec=>wio.observe(sec));
+    new MutationObserver(()=>{tag();watch()}).observe($("#grid"),{childList:true});
+  }
+
+  /* 6. intro loader: logo + a running timecode, then a cut-up wipe */
+  const intro=document.createElement("div");intro.id="intro";intro.setAttribute("aria-hidden","true");
+  intro.innerHTML='<div class="intro__in"><img src="brand-logo-cream.webp" alt=""><span class="intro__tc"><i></i><b>00:00:00:00</b></span><span class="intro__bar"><i></i></span></div>';
+  document.body.appendChild(intro);
+  const tcEl=intro.querySelector("b"), bar=intro.querySelector(".intro__bar i"), T=1300, t0=performance.now();
+  let done=false;
+  function finish(){if(done)return;done=true;start();intro.classList.add("out");setTimeout(()=>intro.remove(),800)}
+  (function tick(n){if(done)return;const p=Math.min(1,(n-t0)/T),fr=Math.floor(p*48);
+    tcEl.textContent=`00:00:${String(Math.floor(fr/24)).padStart(2,"0")}:${String(fr%24).padStart(2,"0")}`;
+    bar.style.transform=`scaleX(${p})`;if(p<1)requestAnimationFrame(tick);else setTimeout(finish,120)})(t0);
+  setTimeout(finish,2600);   // safety: never keep the page covered
+})();
+</script>
+
+</body>
+</html>
