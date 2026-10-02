@@ -79,13 +79,22 @@ h2 em,h3 em{font-style:italic;color:var(--flame)}
 
 /* nav */
 .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--cream) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-.nav .wrap{display:flex;align-items:center;gap:24px;height:76px}
+.nav .wrap{display:flex;align-items:center;gap:24px;height:76px;transition:height .3s cubic-bezier(.2,.8,.2,1)}
+.nav{transition:margin .3s cubic-bezier(.2,.8,.2,1),box-shadow .3s}
+.nav.small{margin-bottom:20px;box-shadow:0 6px 18px -12px rgba(20,18,16,.35)}
+.nav.small .wrap{height:56px}
+.brand--logo img{transition:height .3s cubic-bezier(.2,.8,.2,1),transform .2s}
+.nav.small .brand--logo img{height:38px}
+.nav.small .brand--logo svg{width:18px;height:18px}
+.nav .btn,.menu-btn{transition:padding .3s,width .3s,height .3s}
+.nav.small .btn{padding:8px 16px}
+.nav.small .menu-btn{width:38px;height:38px}
 .brand{display:flex;align-items:center;gap:6px;font:400 24px/1 var(--display);letter-spacing:.3px;text-decoration:none}
 .brand svg{width:20px;height:20px;color:var(--flame);animation:spin 12s linear infinite}
 .brand--logo img{height:54px;width:auto;display:block;transition:transform .2s}
 .brand--logo{gap:8px}.brand--foot img{height:96px}.brand--logo svg{width:24px;height:24px}
 .brand--logo:hover img{transform:rotate(-2deg) scale(1.04)}
-@media (max-width:520px){.brand--logo img{height:44px}.brand--foot img{height:76px}}
+@media (max-width:520px){.brand--logo img{height:44px}.brand--foot img{height:76px}.nav.small .brand--logo img{height:34px}}
 .links{display:flex;gap:22px;margin-left:auto}
 .links a{font:700 12px/1 var(--sans);letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;position:relative;padding:6px 0}
 .links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--flame);transform:scaleX(0);transform-origin:right;transition:transform .25s}
@@ -100,12 +109,12 @@ h2 em,h3 em{font-style:italic;color:var(--flame)}
   .nav .wrap{gap:10px}.nav .wrap>.btn{margin-left:auto}.menu-btn{display:grid}
   .links{display:none;position:absolute;left:0;right:0;top:100%;margin:0;flex-direction:column;gap:0;padding:8px var(--gut) 20px;background:var(--cream);border-bottom:2px solid var(--ink);box-shadow:0 14px 24px -12px rgba(20,18,16,.35)}
   .nav.open .links{display:flex;animation:menuIn .22s cubic-bezier(.2,.8,.2,1)}
-  .links a{font:600 26px/1.1 var(--serif);letter-spacing:0;text-transform:none;padding:14px 0;border-bottom:1px solid var(--line)}
+  .links a{font:700 14px/1 var(--sans);letter-spacing:1.6px;text-transform:uppercase;padding:18px 0;border-bottom:1px solid var(--line)}
   .links a:last-child{border-bottom:0}
   .links a::after{display:none}
 }
 @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-@media (max-width:520px){.nav .btn .t{display:none}.nav .btn{padding:11px 14px}.brand{font-size:21px}}
+@media (max-width:520px){.nav .btn{padding:10px 14px;font-size:11px;letter-spacing:.6px}.nav .btn .arr{display:none}.brand{font-size:21px}}
 
 /* hero */
 .hero{overflow:hidden;border-bottom:2px solid var(--ink)}
@@ -400,7 +409,7 @@ footer.site{padding-block:56px 32px}
     <nav class="links" id="navLinks" aria-label="Sections">
       <a href="#about">About</a><a href="#services">Services</a><a href="#work">Projects</a><a href="#process">Process</a><a href="#contact">Contact</a>
     </nav>
-    <a class="btn" href="#contact"><span class="t">Let's work together</span> <span class="arr">↗</span></a>
+    <a class="btn" href="#testimonials"><span class="t">Testimonials</span> <span class="arr">↗</span></a>
     <button class="menu-btn" type="button" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
 </header>
@@ -409,7 +418,7 @@ footer.site{padding-block:56px 32px}
   <!-- HERO -->
   <section class="hero" data-sec>
     <div class="hero__bg" aria-hidden="true">
-      <video id="bgloop" autoplay muted loop playsinline preload="metadata" poster="media-poster.jpg" disablepictureinpicture controlslist="nodownload" oncontextmenu="return false"><source src="media-reel.mp4" type="video/mp4"></video>
+      <video id="bgloop" autoplay muted loop playsinline preload="metadata" poster="media-poster.jpg" disablepictureinpicture controlslist="nodownload" oncontextmenu="return false"><source data-src="media-reel.mp4" type="video/mp4"></video>
     </div>
     <div class="wrap">
       <div class="hero__copy">
@@ -512,7 +521,7 @@ footer.site{padding-block:56px 32px}
   </section>
 
   <!-- TESTIMONIALS -->
-  <section class="voices" data-sec>
+  <section class="voices" id="testimonials" data-sec>
     <div class="wrap">
       <p class="eyebrow">Kind words</p>
       <h2 class="rv"><span class="ln"><span>What clients <em>say</em></span></span></h2>
@@ -1025,6 +1034,18 @@ if(matchMedia("(pointer:fine)").matches){
   addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;cur.classList.toggle("on",!!e.target.closest(".card,.reel-btn")&&lb.hidden)});
   (function loop(){cx+=(tx-cx)*.25;cy+=(ty-cy)*.25;cur.style.left=cx+"px";cur.style.top=cy+"px";requestAnimationFrame(loop)})();
 }
+
+/* ---- hero background loop: plays on tablets and computers, not on phones (poster only) ---- */
+{const bg=$("#bgloop"),mq=matchMedia("(max-width:700px)");
+ const set=()=>{if(!bg)return;const s=bg.querySelector("source");
+   if(mq.matches){bg.pause();if(s.getAttribute("src")){s.removeAttribute("src");bg.load()}}
+   else{if(!s.getAttribute("src")){s.src=s.dataset.src;bg.load()}bg.muted=true;bg.play().catch(()=>{})}};
+ set();mq.addEventListener("change",set);}
+
+/* ---- header shrinks once you scroll, grows back at the top ---- */
+{const nav=document.querySelector(".nav");let sm=false;
+ const upd=()=>{const y=scrollY;if(!sm&&y>60){sm=true;nav.classList.add("small")}else if(sm&&y<20){sm=false;nav.classList.remove("small")}};
+ addEventListener("scroll",upd,{passive:true});upd();}
 
 /* ---- mobile menu ---- */
 {const nav=document.querySelector(".nav"),mb=$("#menuBtn");
