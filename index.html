@@ -100,8 +100,8 @@ h2 em,h3 em{font-style:italic;color:var(--flame)}
 .nav.small .wrap::before{opacity:1;transform:none}
 .nav .links{transition:gap var(--dur) var(--ease)}.nav.small .links{gap:18px}
 .brand--logo img{transition:height .7s cubic-bezier(.22,1,.36,1),transform .2s}
-.nav.small .brand--logo img{height:38px}
-.nav.small .brand--logo svg{width:18px;height:18px}
+.nav .brand--logo{transform-origin:0 50%;transition:transform .8s cubic-bezier(.22,1,.36,1),margin .8s cubic-bezier(.22,1,.36,1);will-change:transform}
+.nav.small .brand--logo{transform:scale(.7);margin-right:-36px}
 .nav .btn,.menu-btn{transition:padding .7s cubic-bezier(.22,1,.36,1),width .7s cubic-bezier(.22,1,.36,1),height .7s cubic-bezier(.22,1,.36,1),transform .15s,background-color .25s}
 .nav.small .btn{padding:8px 16px}
 .nav.small .menu-btn{width:38px;height:38px}
@@ -110,7 +110,7 @@ h2 em,h3 em{font-style:italic;color:var(--flame)}
 .brand--logo img{height:54px;width:auto;display:block;transition:transform .2s}
 .brand--logo{gap:8px}.brand--foot img{height:96px}.brand--logo svg{width:24px;height:24px}
 .brand--logo:hover img{transform:rotate(-2deg) scale(1.04)}
-@media (max-width:520px){.brand--logo img{height:44px}.brand--foot img{height:76px}.nav.small .brand--logo img{height:34px}}
+@media (max-width:520px){.brand--logo img{height:44px}.brand--foot img{height:76px}.nav.small .brand--logo{transform:scale(.78);margin-right:-23px}}
 .links{display:flex;gap:22px;margin-left:auto}
 .links a{font:700 12px/1 var(--sans);letter-spacing:1.2px;text-transform:uppercase;text-decoration:none;position:relative;padding:6px 0}
 .links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--flame);transform:scaleX(0);transform-origin:right;transition:transform .25s}
@@ -219,7 +219,7 @@ h2 em,h3 em{font-style:italic;color:var(--flame)}
 .card:hover .frame,.card:focus-visible .frame{transform:translate(-3px,-3px);box-shadow:var(--pop)}
 .thumb{container-type:size;position:absolute;inset:0;transition:transform .5s;display:grid;place-items:center;overflow:hidden}
 .card:hover .thumb{transform:scale(1.05)}
-.thumb .big{font:400 clamp(44px,6vw,86px)/.85 var(--display);text-transform:uppercase;text-align:center;padding:0 10px;mix-blend-mode:multiply;opacity:.9}
+.thumb .big{font:400 clamp(44px,6vw,86px)/1.02 var(--display);overflow-wrap:anywhere;max-width:100%;text-transform:uppercase;text-align:center;padding:0 10px;mix-blend-mode:multiply;opacity:.9}
 .thumb .real{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;opacity:0;transition:opacity .4s}.thumb .real.ok{opacity:1}
 .thumb .bar{position:absolute;left:0;right:0;height:11%;background:#000}
 .tag{position:absolute;left:10px;top:10px;z-index:2;padding:4px 10px;border-radius:var(--pill);background:var(--mustard);color:var(--ink);border:1.5px solid var(--ink);font:700 10px/14px var(--sans);letter-spacing:1px;text-transform:uppercase}
@@ -320,6 +320,7 @@ footer.site{padding-block:56px 32px}
 .socials a{width:46px;height:46px;border-radius:50%;border:2px solid var(--cream);color:var(--cream);display:grid;place-items:center;transition:background .2s,color .2s,transform .2s,border-color .2s}
 .socials a:hover{background:var(--mustard);border-color:var(--mustard);color:var(--ink);transform:translateY(-3px) rotate(-6deg)}
 .socials svg{width:20px;height:20px}
+.copy{margin:18px 0 0;text-align:center;color:var(--night-muted);font-size:12px;letter-spacing:.4px}
 .legal{margin-top:48px;padding-top:20px;border-top:1px solid #3a342d;color:var(--night-muted);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:700px){.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
 
@@ -613,7 +614,8 @@ footer.site{padding-block:56px 32px}
       <div><h4>Contact</h4><ul><li><a href="#contact">Start a project</a></li><li><span style="color:var(--night-muted)">maspixelscontents@gmail.com</span></li></ul>
         <div class="socials"><a href="https://www.instagram.com/mas.pixels" target="_blank" rel="noopener" aria-label="MAS Pixels on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.linkedin.com/in/md-arbab-sarin-75567b214" target="_blank" rel="noopener" aria-label="Md Arbab Sarin on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v6.35h-4v-5.63c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.73h-4z"/></svg></a></div></div>
     </div>
-    <div class="legal"><span>© 2026 MAS Pixels · Md Arbab Sarin</span><span>Edited frame by frame.</span></div>
+    <div class="legal"><span>MAS Pixels · Md Arbab Sarin</span><span>Edited frame by frame.</span></div>
+    <p class="copy">© 2026-2030 MAS Pixels. All Rights Reserved.</p>
   </div>
 </footer>
 
@@ -908,7 +910,7 @@ function thumb(v,i){
   const did=(v.url||"").match(/drive\.google\.com\/(?:file\/d\/|open\?id=)([\w-]{10,})/);
   const real=did&&v.drivethumb!==false?`<img class="real" src="https://drive.google.com/thumbnail?id=${did[1]}&sz=w800" alt="" loading="lazy" referrerpolicy="no-referrer" onload="fitThumb(this)" onerror="this.remove()">`:"";
   return `<div class="thumb" style="background:linear-gradient(${ang}deg,${a} 0 48%,${b} 48% 100%)">${real}
-    <span class="big" style="font-size:min(clamp(30px,4.6vw,68px),calc(110cqw / ${longest}),calc(${word.split(/\s+/).length>3?70:90}cqh / ${Math.min(word.split(/\s+/).length,4)}));color:${dark?"#f4ede1":"#15120f"};mix-blend-mode:${dark?"normal":"multiply"}">${word}</span>${bars}</div>`;
+    <span class="big" style="font-size:min(clamp(30px,4.6vw,68px),calc(110cqw / ${longest}),calc(78cqh / ${Math.min(word.split(/\s+/).length,4)} / 1.1));color:${dark?"#f4ede1":"#15120f"};mix-blend-mode:${dark?"normal":"multiply"}">${word}</span>${bars}</div>`;
 }
 const ar=r=>r==="9:16"?"9/16":r==="2.39:1"?"2.39/1":r==="2:1"?"2/1":r==="4:3"?"4/3":"16/9";
 /* when a video's real thumbnail loads, reshape its card to match: tall for 9:16 reels, wide for 16:9 */
