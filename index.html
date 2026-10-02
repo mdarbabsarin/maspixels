@@ -413,7 +413,6 @@ footer.site{padding-block:56px 32px}
 </head>
 <body>
 <header class="nav">
-  <span class="prog" id="prog" aria-hidden="true"></span>
   <div class="wrap">
     <a class="brand brand--logo" href="#top" aria-label="MAS Pixels, back to top"><img src="brand-logo.webp" alt="MAS Pixels — Md Arbab Sarin" width="600" height="366"><svg aria-hidden="true"><use href="#burst"/></svg></a>
     <nav class="links" id="navLinks" aria-label="Sections">
@@ -1142,10 +1141,7 @@ if(reduce){
    section colour wipes, parallax, scroll progress
    ===================================================================== */
 (function(){
-  const root=document.documentElement, prog=$("#prog");
-  // scroll progress bar (runs even with reduced motion: it is information, not decoration)
-  const progUpd=()=>{const max=root.scrollHeight-innerHeight||1;prog.style.transform=`scaleX(${Math.min(1,scrollY/max)})`};
-  addEventListener("scroll",()=>requestAnimationFrame(progUpd),{passive:true});progUpd();
+  const root=document.documentElement;
   if(reduce||!("IntersectionObserver" in window))return;
 
   /* 1. what animates: every text block and button, grouped by section for the stagger */
