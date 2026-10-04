@@ -954,7 +954,10 @@ let filter="all", shown=0;
 const isTall=v=>v.ratio==="9:16";
 const SHUF=new Map(VIDEOS.map(v=>[v,Math.random()])), SLOT=new Map();
 /* card shape: 9:16 reels stay 9:16; landscape videos are square in long slots and 16:9 in short slots */
-const shape=v=>isTall(v)?"9/16":(SLOT.get(v)==="T"?"1/1":SLOT.get(v)==="W2"?"12/5":"16/9");   // reels always keep their 9:16 shape
+/* every card takes the real shape of its video: 9:16 reels, 16:9 films, 2:1 cinematic, 4:3 */
+const RAT={"9:16":9/16,"16:9":16/9,"2:1":2,"2.39:1":2.39,"4:3":4/3};
+const ratioOf=v=>RAT[v.ratio]||16/9;
+const shape=v=>({"9:16":"9/16","2:1":"2/1","2.39:1":"2.39/1","4:3":"4/3"})[v.ratio]||"16/9";
 function collage(L){
   const by=a=>a.sort((x,y)=>SHUF.get(x)-SHUF.get(y));
   const T=by(L.filter(isTall)), W=by(L.filter(v=>!isTall(v))), out=[];
@@ -978,23 +981,20 @@ addEventListener("resize",()=>{if(+$("#grid").dataset.cols!==gridCols())renderGr
    One R column per block (diagonal); reel-heavy categories fall back to R columns, so they show fewer cards
    per block; a reel with no wide card left stands alone. Then "Load more" adds the next block. */
 function renderGrid(){
-  const n=gridCols(), L=list();
-  const T=L.filter(isTall), W=L.filter(v=>!isTall(v));
-  const blocks=Math.max(1,Math.ceil(shown/(n*3))), cols=Array.from({length:n},()=>[]);
-  let used=0;
-  const take=(arr,slot)=>{const v=arr.shift();if(v){SLOT.set(v,slot);used++}return v};
-  for(let bk=0;bk<blocks&&(T.length||W.length);bk++){
-    for(let k=0;k<n;k++){
-      let type=(n===1?bk%2===1:(k+bk)%3===0)?"R":"S";
-      if(type==="S"&&W.length<3&&T.length)type="R";
-      if(type==="R"&&!T.length)type="S";
-      const col=[];
-      if(type==="R"){col.push(take(T,"T"));if(W.length)col.push(take(W,"W2"));if((k+bk)%2)col.reverse()}
-      else{const sq=take(W,"T"),w1=take(W,"W"),w2=take(W,"W");const pos=(k+bk)%3;const rest=[w1,w2];rest.splice(pos,0,sq);col.push(...rest)}
-      cols[k].push(...col.filter(Boolean));
-    }
-  }
-  shown=blocks*n*3;
+  const n=gridCols(), L=list(), cnt=Math.min(shown,L.length);
+  /* masonry: each card goes into the shortest column so the columns stay as even as possible */
+  const cols=Array.from({length:n},()=>[]), h=new Array(n).fill(0);
+  const H=v=>1/ratioOf(v)+0.22;   // card height in "column widths" (frame + title)
+  /* tallest cards are placed first, each into the shortest column (keeps the column bottoms close), then each
+     column is put back in its shuffled order so reels and films stay mixed */
+  const page=L.slice(0,cnt), order=new Map(page.map((v,i)=>[v,i]));
+  [...page].sort((x,y)=>H(y)-H(x)).forEach(v=>{let k=0;for(let c=1;c<n;c++)if(h[c]<h[k]-0.001)k=c;cols[k].push(v);h[k]+=H(v)});
+  /* even out the last bit: move a short card from the longest column to the shortest when that brings them closer */
+  for(let it=0;it<12&&n>1;it++){let lo=0,hi=0;for(let c=1;c<n;c++){if(h[c]<h[lo])lo=c;if(h[c]>h[hi])hi=c}
+    const gap=h[hi]-h[lo];let best=null;cols[hi].forEach(v=>{if(H(v)<gap&&(!best||Math.abs(gap-2*H(v))<Math.abs(gap-2*H(best))))best=v});
+    if(!best||Math.abs(gap-2*H(best))>=gap)break;cols[hi].splice(cols[hi].indexOf(best),1);cols[lo].push(best);h[hi]-=H(best);h[lo]+=H(best)}
+  cols.forEach(c=>c.sort((x,y)=>order.get(x)-order.get(y)));
+  const used=cnt;
   const card=(v,i)=>{const idx=VIDEOS.indexOf(v);return `
     <button class="card" type="button" data-i="${idx}" style="animation-delay:${(i%9)*35}ms" aria-label="Play ${v.title}">
       <div class="frame${isTall(v)?" tall":""}" style="aspect-ratio:${shape(v)}">${thumb(v,idx)}<span class="tag">${GENRES[v.genre]}</span><span class="tcode">${tc(idx+3)}</span></div>
