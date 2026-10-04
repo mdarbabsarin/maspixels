@@ -338,8 +338,13 @@ footer.site{padding-block:56px 32px}
 /* phones: the hero (thumbs-up) and Projects (thinking) graphics sit a little higher; photo and circle keep their size */
 @media (max-width:600px){.hero__stage .stage,.work__stage .stage{translate:0 -28px}}
 .stage{pointer-events:none;container-type:size}
-.static-pose{position:absolute;inset:0;display:grid;place-items:end center}
-.static-pose .ring{position:relative;width:min(92cqw,70cqh);aspect-ratio:1}
+/* phones (and reduced motion): each section holds its own photo, so it scrolls with the page natively — no lag, no jitter.
+   Same size and spot as the floating version: a 1.3×d block centred in the stage, the circle in its lower part. */
+.static-pose{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:translateY(26px) scale(.94);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.static-pose.in{opacity:1;transform:none}
+.static-pose .ring{--d:min(92cqw,73.85cqh);position:relative;width:var(--d);aspect-ratio:1;margin-top:calc(var(--d) * .3)}
+.static-pose .bob{position:absolute;inset:0;animation:bob 4.5s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.static-pose{opacity:1;transform:none;transition:none}.static-pose .bob{animation:none}}
 .static-pose .pop img{opacity:1}
 /* cursor */
 #cur{position:fixed;left:0;top:0;z-index:200;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--mustard);border:2px solid var(--ink);display:grid;place-items:center;font:700 11px/1 var(--sans);letter-spacing:1.4px;pointer-events:none;transform:scale(0);transition:transform .2s cubic-bezier(.2,.8,.2,1)}
@@ -614,8 +619,8 @@ footer.site{padding-block:56px 32px}
       <div><h4>Contact</h4><ul><li><a href="#contact">Start a project</a></li><li><span style="color:var(--night-muted)">maspixelscontents@gmail.com</span></li></ul>
         <div class="socials"><a href="https://www.instagram.com/mas.pixels" target="_blank" rel="noopener" aria-label="MAS Pixels on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.linkedin.com/in/md-arbab-sarin-75567b214" target="_blank" rel="noopener" aria-label="Md Arbab Sarin on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v6.35h-4v-5.63c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.73h-4z"/></svg></a></div></div>
     </div>
-    <div class="legal"><span>MAS Pixels · Md Arbab Sarin</span><span>Edited frame by frame.</span></div>
-    <p class="copy">© 2026-2030 MAS Pixels. All Rights Reserved.</p>
+    <div class="legal"><span>MAS Pixels · Md Arbab Sarin</span></div>
+    <p class="copy">© 2026 MAS Pixels. All Rights Reserved.</p>
   </div>
 </footer>
 
@@ -1117,9 +1122,13 @@ function updTc(){if(!tcEl)return;const max=document.documentElement.scrollHeight
 const mas=$("#mas"), blob=mas.querySelector(".disc"), imgs=[...mas.querySelectorAll("img")];
 const stages=$$(".stage");
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t, ease=t=>t*t*(3-2*t);
-if(reduce){
+const phone=matchMedia("(max-width:760px)").matches;
+if(reduce||phone){
   mas.remove();
-  stages.forEach(s=>{s.innerHTML=`<div class="static-pose"><div class="ring"><div class="disc ${s.dataset.blob==="flame"?"flame":""}"></div><div class="pop"><img src="poses-${s.dataset.pose}.webp" data-p="${s.dataset.pose}" alt=""></div></div></div>`});
+  stages.forEach(s=>{s.innerHTML=`<div class="static-pose"><div class="ring"><div class="bob"><div class="disc ${s.dataset.blob==="flame"?"flame":""}"></div><div class="pop"><img src="poses-${s.dataset.pose}.webp" data-p="${s.dataset.pose}" alt="" decoding="async"></div></div></div></div>`});
+  const poses=$$(".static-pose");
+  if(reduce||!("IntersectionObserver" in window))poses.forEach(p=>p.classList.add("in"));
+  else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.15});poses.forEach(p=>io.observe(p))}
 }else{
   let ticking=false;
   function place(){
@@ -1191,7 +1200,7 @@ if(reduce){
   }),{threshold:0,rootMargin:"0px 0px -12% 0px"});
 
   /* 4. parallax: decorations drift at their own speed */
-  const PAR=[[".hero__bg",.28],[".stamp",-.18],[".voices h2",-.06]];
+  const PAR=matchMedia("(max-width:760px)").matches?[]:[[".hero__bg",.28],[".stamp",-.18],[".voices h2",-.06]];
   const par=PAR.flatMap(([q,v])=>$$(q).map(el=>[el,v]));
   const parUpd=()=>par.forEach(([el,v])=>{const r=el.parentElement.getBoundingClientRect();
     const off=(r.top+r.height/2-innerHeight/2)*v;el.style.translate=`0 ${(-off).toFixed(1)}px`});
