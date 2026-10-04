@@ -702,11 +702,11 @@ VIDEOS.sort((a,b)=>(SAMPLE[a.genre].indexOf(a.title)-SAMPLE[b.genre].indexOf(b.t
    url: a YouTube, Vimeo or Google Drive link ("Anyone with the link" access).
    thumb (optional): an image file next to this page, e.g. "thumbs/bgmi.jpg". */
 const MY_VIDEOS = [
-  {title:"BGMI", genre:"commercial", ratio:"16:9", dur:"", thumb:"",
+  {title:"BGMI x OHC", yt:"cwm3a4WH6VQ", genre:"commercial", ratio:"16:9", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/18aX2LZhNWRaJeR51YvSKj8aT7kZzYYFs/view?usp=drive_link"},
-  {title:"Havells", genre:"commercial", ratio:"16:9", drivethumb:false, dur:"", thumb:"",
+  {title:"Havells", yt:"cWrsaL9S6HY", genre:"commercial", ratio:"16:9", drivethumb:false, dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1TSptaP4f_779JJL4roW-m-F_vinLNuiP/view?usp=drive_link"},
-  {title:"The Traitors", genre:"commercial", word:"Traitors", ratio:"16:9", dur:"", thumb:"",
+  {title:"The Traitors", yt:"ZutYyOyAqcU", genre:"commercial", word:"Traitors", ratio:"16:9", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1ULsYG59GFm5T5SL6EOHdr7pHLJcKrgU-/view?usp=drive_link"},
   {title:"Pyroflex Gym", genre:"music", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1tr0w6HY5JKvQBEN61zdP_1kvJjOR22r-/view?usp=drive_link"},
@@ -728,15 +728,15 @@ const MY_VIDEOS = [
    url:"https://drive.google.com/file/d/1QHtIMed_oimpQd7BmXI3JeSDw-udp-Wz/view"},
   {title:"Realestate Walkthrough", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1JD8TZ7pIUhHhWpmNoj8cJYX2Vx-xXMVw/view"},
-  {title:"MarkMax Showreel", genre:"commercial", ratio:"16:9", dur:"", thumb:"https://i.ytimg.com/vi/zKMY2dtqZ2c/maxresdefault.jpg",
-   url:"https://youtu.be/zKMY2dtqZ2c", backup:"https://drive.google.com/file/d/1ETXhZ4NwCojCYsJmMf0kdmct-lyf5lwH/view"},
-  {title:"Third Floor Films", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+  {title:"MarkMax Showreel", yt:"zKMY2dtqZ2c", genre:"commercial", ratio:"16:9", dur:"", thumb:"",
+   url:"https://drive.google.com/file/d/1ETXhZ4NwCojCYsJmMf0kdmct-lyf5lwH/view"},
+  {title:"Third Floor Films", yt:"eBm0f3baz2U", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
    url:"https://drive.google.com/file/d/1Xk-u0ZaP05lzUX_fvHmfZU9KSSnQcqBS/view"},
-  {title:"TATA AIGI", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+  {title:"TATA AIGI", yt:"0muoO3-RCv0", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
    url:"https://drive.google.com/file/d/1-QrB9CxDqhNaJDlMOxb7ZjAvS5eq-lF_/view"},
-  {title:"DDF x Zepto", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+  {title:"DDF x Zepto", yt:"lQtd0XrgoeM", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
    url:"https://drive.google.com/file/d/1cLjzDQ8NdqspVBR3FwiuCD8g0ClCILgD/view"},
-  {title:"Discourse", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
+  {title:"Discourse", yt:"_ijy1PvRVvA", genre:"commercial", ratio:"16:9", dur:"", thumb:"", drivethumb:false,
    url:"https://drive.google.com/file/d/1IqfKJfIXva--kzhJPPxZRled2KwnC5U1/view"},
   {title:"Property Doctor", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1PnkpN0IWbhlBMPVUikPXWoYLFDMZdhWS/view"},
@@ -834,6 +834,19 @@ const MY_VIDEOS = [
    url:"https://drive.google.com/file/d/1NntVo-OvrUgTxKfTh6DWIy_o2ZpLc1u5/view"}
 ];
 MY_VIDEOS.forEach((v,i)=>{VIDEOS[i]=v});
+/* YouTube versions: a video plays from YouTube as soon as it is viewable (Unlisted or Public). While it is still
+   Private, YouTube only serves its 120×90 "no thumbnail" image, so the card keeps using the Google Drive copy. */
+function useYouTube(){
+  MY_VIDEOS.filter(v=>v.yt).forEach(v=>{
+    const im=new Image();
+    im.onload=()=>{if(im.naturalWidth<=120)return;
+      v.driveUrl=v.driveUrl||v.url;v.url="https://youtu.be/"+v.yt;v.drivethumb=false;
+      const swap=src=>{v.thumb=src;document.querySelectorAll(`.card[data-i="${VIDEOS.indexOf(v)}"] .thumb`).forEach(t=>{t.outerHTML=thumb(v,VIDEOS.indexOf(v))})};
+      const hi=new Image();hi.onload=()=>swap(hi.naturalWidth>120?hi.src:im.src+"#bars");hi.onerror=()=>swap(im.src+"#bars");
+      hi.src=`https://i.ytimg.com/vi/${v.yt}/maxresdefault.jpg`;};
+    im.src=`https://i.ytimg.com/vi/${v.yt}/hqdefault.jpg`;
+  });
+}
 /* Commercial shows only real videos: drop the sample Commercial cards that have no link */
 for(let i=VIDEOS.length-1;i>=0;i--){if(VIDEOS[i].genre==="commercial"&&!VIDEOS[i].url)VIDEOS.splice(i,1)}
 /* ================================================= */
@@ -907,7 +920,7 @@ const PAL={commercial:[["#f2b61f","#e8491d"],["#f4ede1","#f2b61f"],["#e8491d","#
 const tc=i=>`00:${String(i%60).padStart(2,"0")}:${String((i*17)%60).padStart(2,"0")}:${String((i*7)%24).padStart(2,"0")}`;
 function thumb(v,i){
   if(v.poster)return `<div class="thumb"><img class="real ok" src="${v.poster}" alt="" loading="lazy" style="opacity:1"></div>`;
-  if(v.thumb)return `<div class="thumb"><img src="${v.thumb}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>`;
+  if(v.thumb)return `<div class="thumb"><img src="${v.thumb}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover${/#bars$/.test(v.thumb)?";transform:scale(1.34)":""}"></div>`;
   const [a,b]=PAL[v.genre][i%3], ang=[135,200,60,160][i%4];
   const dark=["#141210","#2a1d3a","#e8491d"].includes(a) && b!=="#f4ede1";
   const word=v.title, longest=Math.max(...word.split(/\s+/).map(w=>w.length),1);
@@ -989,7 +1002,7 @@ function renderGrid(){
 $("#filters").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;filter=b.dataset.f;shown=pageSize();renderFilters();renderGrid()});
 $("#moreBtn").addEventListener("click",()=>{shown+=gridCols()*3;renderGrid()});
 $("#grid").addEventListener("click",e=>{const c=e.target.closest(".card");if(c)openVideo(VIDEOS[+c.dataset.i])});
-shown=pageSize();renderFilters();renderGrid();
+shown=pageSize();renderFilters();renderGrid();useYouTube();
 
 /* ---- lightbox ---- */
 const lb=$("#lb");let lastFocus=null;
