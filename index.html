@@ -714,17 +714,17 @@ const MY_VIDEOS = [
    url:"https://drive.google.com/file/d/1YMNVf5YmMOhMief4EsYfz_VZNybW5uiz/view?usp=drive_link"},
   {title:"All About Fitness", genre:"short", word:"Fitness", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1X8mm18JtiVsKYb2Mwzx1OwH74s0iP5Ez/view?usp=drive_link"},
-  {title:"Educational Podcast", genre:"international", ratio:"9:16", dur:"", thumb:"",
+  {title:"Educational Podcast", yt:"24W94OZ2SnE", genre:"international", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1sjO5JGDwrvrDzey7eKN8CPNfHV72fyTe/view"},
-  {title:"Paulson Velly", genre:"international", ratio:"9:16", dur:"", thumb:"",
+  {title:"Paulson Velly", yt:"I5ftqnX-drw", genre:"international", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1YDT8vbQ3ADS0Tff6hcE2Q7oXhc5yW5RV/view"},
-  {title:"Business", genre:"international", ratio:"9:16", dur:"", thumb:"",
+  {title:"Alert Businesses", yt:"m_oCNBptUd4", genre:"international", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1MtdqwlexOCI3A7wRkoDZp29xjBb_Z5jC/view"},
-  {title:"Abu Dabi", genre:"international", ratio:"9:16", dur:"", thumb:"",
+  {title:"Abu Dabi", yt:"tvDtgN1Xgr4", genre:"international", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/16OOO259TCBcw2YNoCFWHEcbxp8W1ydwW/view"},
-  {title:"Renewables", genre:"international", ratio:"16:9", drivethumb:false, dur:"", thumb:"",
+  {title:"Renewables", yt:"Dn-IRKf2K88", genre:"international", ratio:"16:9", drivethumb:false, dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1HYVYmqDiGth9L1nj19q6XiVrkr75uCMx/view"},
-  {title:"Trading", genre:"international", ratio:"16:9", dur:"", thumb:"",
+  {title:"Trading Knowledge", yt:"g3ENYX1LZeo", genre:"international", ratio:"16:9", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1QHtIMed_oimpQd7BmXI3JeSDw-udp-Wz/view"},
   {title:"Realestate Walkthrough", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1JD8TZ7pIUhHhWpmNoj8cJYX2Vx-xXMVw/view"},
@@ -754,11 +754,11 @@ const MY_VIDEOS = [
    url:"https://drive.google.com/file/d/1o9SiTisRSlOjxJhnzzhbnN-e3c3RFhml/view"},
   {title:"WDC Properties", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1fakv1SuBXaVFyjFK441bdUoWnlxdd7Mk/view"},
-  {title:"Brand Entertainment", genre:"international", ratio:"9:16", dur:"", thumb:"",
+  {title:"Brand Entertainment", yt:"50CP-IH0dv8", genre:"international", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1WMJZaj1Pc7KbLuulSwua1gwqh3yQAWz7/view"},
-  {title:"CCC", genre:"international", ratio:"9:16", dur:"", thumb:"",
+  {title:"Ashton Hall", yt:"27lYIwghzCU", genre:"international", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1wJDRqJYvR9FiiZhDLPvYrpwkwxNNS_jg/view"},
-  {title:"DFW", genre:"international", ratio:"9:16", dur:"", thumb:"",
+  {title:"DFW", yt:"vawhalq_qMI", genre:"international", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/16nHbJotJ3FOujoP8kTQaZTvBUCX6ULAi/view"},
   {title:"Labour Day", genre:"realestate", ratio:"9:16", dur:"", thumb:"",
    url:"https://drive.google.com/file/d/1-6NktpK-NygCVCzviPEb_Ybo4N5Kgh5T/view"},
@@ -843,7 +843,11 @@ function useYouTube(){
       v.driveUrl=v.driveUrl||v.url;v.url="https://youtu.be/"+v.yt;v.drivethumb=false;
       const swap=src=>{v.thumb=src;document.querySelectorAll(`.card[data-i="${VIDEOS.indexOf(v)}"] .thumb`).forEach(t=>{t.outerHTML=thumb(v,VIDEOS.indexOf(v))})};
       const hi=new Image();hi.onload=()=>swap(hi.naturalWidth>120?hi.src:im.src+"#bars");hi.onerror=()=>swap(im.src+"#bars");
-      hi.src=`https://i.ytimg.com/vi/${v.yt}/maxresdefault.jpg`;};
+      const getMax=()=>{hi.src=`https://i.ytimg.com/vi/${v.yt}/maxresdefault.jpg`};
+      if(v.ratio==="9:16"){/* Shorts: use the tall 9:16 cover when YouTube has one */
+        const oar=new Image();oar.onload=()=>oar.naturalHeight>oar.naturalWidth?swap(oar.src):getMax();oar.onerror=getMax;
+        oar.src=`https://i.ytimg.com/vi/${v.yt}/oardefault.jpg`;}
+      else getMax();};
     im.src=`https://i.ytimg.com/vi/${v.yt}/hqdefault.jpg`;
   });
 }
